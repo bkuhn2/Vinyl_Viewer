@@ -1,25 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
 import './_App.scss';
+import { Routes, Route } from 'react-router-dom';
+import Home from '../Home/Home';
+import MainLayout from '../MainLayout/MainLayout';
+import SearchForm from '../SearchForm/SearchForm';
+import AlbumDetails from '../AlbumDetails/AlbumDetails';
+import UserCollection from '../UserCollection/UserCollection';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path='/' element={<Home />}/>
+      <Route path='/' element={<MainLayout />}>
+        <Route path='/search' >
+          <Route index element={<SearchForm />}/>
+          <Route path=':artistName' element={<SearchForm />}/>
+        </Route>
+        <Route path='/album/:id' element={<AlbumDetails />}/>
+        <Route path='/my-collection' element={<UserCollection />}/>
+      </Route>
+    </Routes>
   );
 }
 
