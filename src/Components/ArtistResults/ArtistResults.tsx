@@ -3,21 +3,21 @@ import '../ArtistResults/_ArtistResults.scss';
 import SearchResult from '../SearchResult/SearchResult';
 
 type Props = {
-  name: string;
+  searchName: string;
   results: Array<string>;
 }
 
-const ArtistResults = ({name, results}: Props) => {
+const ArtistResults = ({results, searchName}: Props) => {
 
   const artistsList = results.map((result, index) => {
     return (
-      <SearchResult name={result} key={index}/>
+      <SearchResult name={result} searchName={searchName} key={index}/>
     )
   })
 
   return (
     <section className='artist-results-section'>
-      <h2>Results for "{name}"</h2>
+      <h2>Results for "{searchName}"</h2>
       <div>
         {artistsList}
       </div>
