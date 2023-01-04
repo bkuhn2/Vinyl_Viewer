@@ -1,5 +1,7 @@
-const fetchData = (url) => {
-  return fetch(url).then(response => response.json())
-}
+import React from "react";
 
-export default fetchData;
+// const fetchData = (url) => {
+//   return fetch(url).then(response => response.json())
+// }
+
+// export default fetchData;
