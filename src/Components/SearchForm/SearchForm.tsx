@@ -19,7 +19,7 @@ const SearchForm = (props: Props) => {
     &format=json`)
       .then(response => response.json())
       .then(data => {
-        setSearchResults(data.results.artistmatches.artist);
+        setSearchResults(data.results.artistmatches.artist.map((datum: {name: string}) => datum.name));
       });
 
     clearSearchTerm();
