@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const SearchForm = () => {
+
+  const [searchTerm, setSearchTerm] = useState('');
+
   return (
     <div>
-      <h1>Search Form</h1>
+      <h1>Explore</h1>
+      <form>
+        <input type='text' placeholder='Search for your favorite artists' value={searchTerm}/>
+        <button>Search</button>
+      </form>
     </div>
   )
 }
