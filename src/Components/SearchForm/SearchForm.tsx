@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import './_SearchForm.scss'
 
 const SearchForm = () => {
 
@@ -7,16 +8,17 @@ const SearchForm = () => {
   const [albumsByArtist, setAlbumsByArtist] = useState([]);
 
   return (
-    <div>
+    <div className='search-page'>
       <h1>Explore</h1>
-      <form>
-        <input 
+      <form className='search-form'>
+        <input
+          className='search-input' 
           type='text' 
           placeholder='Search for your favorite artists' 
           value={searchTerm} 
           onChange={event => setSearchTerm(event.target.value)}
           />
-        <button>Search</button>
+        <button className='search-button'>Search</button>
       </form>
     </div>
   )
