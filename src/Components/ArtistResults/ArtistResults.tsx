@@ -9,9 +9,9 @@ type Props = {
 
 const ArtistResults = ({name, results}: Props) => {
 
-  const artistsList = results.map(result => {
+  const artistsList = results.map((result, index) => {
     return (
-      <SearchResult name={result}/>
+      <SearchResult name={result} key={index}/>
     )
   })
 
