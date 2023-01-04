@@ -1,2 +1,41 @@
 @use '../../Utilities/mixins';
 @use '../../Utilities/variables';
+
+.split-screen {
+    display: flex;
+    height: 100vh;
+}
+
+.split {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:50vw;
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.split:hover {
+    width: 60vw;
+}
+
+.split-screen .split:not(:hover) {
+    color:#00ffff;
+    -webkit-filter: grayscale(1);
+    -moz-filter: grayscale(1);
+    -ms-filter: grayscale(1);
+    filter: grayscale(1);
+    opacity: .75;
+  }
+
+.artist-search {
+    background-color: red;
+}
+
+.user-collection {
+    background-color: blue;
+}
+
+h1 {
+    text-decoration: none;
+}
