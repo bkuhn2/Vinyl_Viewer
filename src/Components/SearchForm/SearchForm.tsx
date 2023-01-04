@@ -1,30 +1,39 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import './_SearchForm.scss'
 import ArtistResults from '../ArtistResults/ArtistResults';
 
-const SearchForm = () => {
+type Props = {
+}
+
+const SearchForm = (props: Props) => {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [albumsByArtist, setAlbumsByArtist] = useState([]);
+  let searchName: string = useParams().artistName!;
+  let currentArtist: string;
 
-  const searchArtists = (event: React.SyntheticEvent) => {
-    event.preventDefault();
-
-    fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${searchTerm}&api_key=fcf48a134034bb684aa87d0e0309a0fd
+  const searchArtists = () => {
+    fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${searchName}&api_key=fcf48a134034bb684aa87d0e0309a0fd
     &format=json`)
       .then(response => response.json())
       .then(data => {
         setSearchResults(data.results.artistmatches.artist);
       });
 
-    clearInputs();
-  } /*Need declare searchArtists type?? not as void??*/
+    clearSearchTerm();
+  }
 
-  const clearInputs = () => {
+  const clearSearchTerm = () => {
     setSearchTerm('')
   }
+
+  useEffect(() => {
+    if (searchName) {
+      searchArtists()
+    }
+  }, [searchName])
 
   return (
     <div className='search-page'>
@@ -37,16 +46,12 @@ const SearchForm = () => {
           value={searchTerm} 
           onChange={event => setSearchTerm(event.target.value)}
           />
-        <Link 
-          to={`/search/${searchTerm}`}
-          onClick={event => searchArtists(event)} 
-        >
+        <Link to={`/search/${searchTerm}`}>
           <button className='search-button'>Search</button>
         </Link>
       </form>
-      <section>
-        <ArtistResults />
-      </section>
+      {searchName && <ArtistResults name={searchName} results={searchResults}/>}
+      {/* have a conditional here for carousel */}
     </div>
   )
 }
