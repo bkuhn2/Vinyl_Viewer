@@ -4,15 +4,16 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="split-screen">
-      <Link className="artist-search split" to={`/search`}>
-          <h1>Search Artists</h1>
-      </Link>
+      <div className="split-screen">
+        <h1>Vinyl Viewer</h1>
+        <Link className="artist-search split" to={`/search`}>
+            <h2>Search Artists</h2>
+        </Link>
 
-      <Link className="user-collection split" to={`/my-collection`}>
-          <h1>My Collection</h1>
-      </Link>
-    </div>
+        <Link className="user-collection split" to={`/my-collection`}>
+            <h2>My Collection</h2>
+        </Link>
+      </div>
   )
 }
 

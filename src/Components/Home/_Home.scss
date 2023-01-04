@@ -6,6 +6,17 @@
     height: 100vh;
 }
 
+h1 {
+    position: absolute;
+    text-align: center;
+    width:100vw;
+    color: white;
+    font-size: 10vh;
+    text-shadow: 2px 2px 4px black;
+    text-decoration: inherit;
+    z-index: 10;
+}
+
 .split {
     display: flex;
     align-items: center;
@@ -37,8 +48,4 @@
 .user-collection {
     background-image: url("../../Images/RecordsSide.JPG");
     background-size: cover;
-}
-
-h1 {
-    text-decoration: none;
 }
