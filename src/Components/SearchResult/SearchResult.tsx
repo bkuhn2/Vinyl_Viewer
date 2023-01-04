@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './_SearchResult.scss'
 
 type Props = {
@@ -7,9 +8,9 @@ type Props = {
 
 const SearchResult = ({name}: Props) => {
   return (
-    <div className='search-result'>
-      <p>{name}</p>
-    </div>
+    <Link to={`/search/${name}/albums`}>
+      <p className='search-result'>{name}</p>
+    </Link>
   )
 }
 
