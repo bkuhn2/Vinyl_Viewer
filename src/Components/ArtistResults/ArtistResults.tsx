@@ -1,10 +1,19 @@
 import React from 'react'
+import '../ArtistResults/_ArtistResults.scss'
 
-const ArtistResults = () => {
+type Props = {
+  name: string;
+  results: Array<object>;
+}
+
+const ArtistResults = ({name, results}: Props) => {
   return (
-    <div>
-      
-    </div>
+    <section className='artist-results-section'>
+      <h2>Results for "{name}"</h2>
+      <div>
+
+      </div>
+    </section>
   )
 }
 
