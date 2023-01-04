@@ -6,6 +6,10 @@
   border: solid 3px black;
   height: 50vh;
   width: 80vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .my-collection {
