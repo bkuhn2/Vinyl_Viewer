@@ -1,4 +1,4 @@
-const fetchPage = async (url: string): Promise<Album> => {
+export const fetchPage = async (url: string): Promise<AlbumInterface> => {
   const response = await fetch(url)
   const { album } = await response.json()
   return {
@@ -12,29 +12,25 @@ const fetchPage = async (url: string): Promise<Album> => {
       artist: album.artist,
       album: album.name
     })),
-    listeners: album.listeners,
-    wiki: {
-      published: album.wiki.published,
-      summary: album.wiki.summary
-    }
+    // listeners: album.listeners,
+    releaseDate: album.wiki.published,
+    summary: album.wiki.summary,
+    lastURL: album.url
   }
 }
 
-export default fetchPage
-
-interface Album {
+export interface AlbumInterface {
   name: string
   artist: string
   image: string
   tracks: [Record<string, Track>]
-  listeners: string
-  wiki: {
-    published: string
-    summary: string
-  }
+  // listeners: string
+  releaseDate: string
+  summary: string
+  lastURL: string
 }
 
-interface Track {
+export interface Track {
   name: string
   duration: number
   trackNum: number

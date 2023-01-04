@@ -30,7 +30,7 @@ function App() {
           <Route index element={<SearchForm />}/>
           <Route path=':artistName' element={<SearchForm />}/>
         </Route>
-        <Route path='/album/:artist/:album' element={<AlbumDetails addToCollection={addToCollection} />}/>
+        <Route path='/album/:artistName/:albumName' element={<AlbumDetails addToCollection={addToCollection} />}/>
         <Route path='/my-collection' element={<UserCollection />}/>
       </Route>
     </Routes>
