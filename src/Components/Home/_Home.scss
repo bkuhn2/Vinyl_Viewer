@@ -4,16 +4,17 @@
 .split-screen {
     display: flex;
     height: 100vh;
+    color: white;
+    font-size: 5vh;
+    text-shadow: 2px 2px 4px black;
+    text-decoration: inherit;
 }
 
 h1 {
     position: absolute;
     text-align: center;
     width:100vw;
-    color: white;
-    font-size: 10vh;
-    text-shadow: 2px 2px 4px black;
-    text-decoration: inherit;
+
     z-index: 10;
 }
 
@@ -22,9 +23,7 @@ h1 {
     align-items: center;
     justify-content: center;
     width:50vw;
-    color: white;
-    font-size: 5vh;
-    text-shadow: 2px 2px 4px black;
+    color: inherit;
     text-decoration: inherit;
 }
 
