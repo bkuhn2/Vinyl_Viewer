@@ -14,8 +14,8 @@ function App() {
       <Route path='/' element={<MainLayout />}>
         <Route path='/search' >
           <Route index element={<SearchForm />}/>
-          <Route path=':artistName' element={<SearchForm />}/>
-          <Route path=':artistName/albums' element={<SearchForm />}/>
+          <Route path=':searchName' element={<SearchForm />}/>
+          <Route path=':searchName/:artistName' element={<SearchForm />}/>
         </Route>
         <Route path='/album/:id' element={<AlbumDetails />}/>
         <Route path='/my-collection' element={<UserCollection />}/>
