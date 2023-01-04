@@ -34,10 +34,6 @@ const SearchForm = () => {
     setSearchField('')
   }
 
-  const clearAlbums = () => {
-    setAlbumsByArtist([]);
-  }
-
   useEffect(() => {
     if (searchName) {
       searchArtists()
