@@ -69,7 +69,7 @@ const AlbumDetails: FC<Props> = ({addToCollection}) => {
               Last.fm
             </a>
           </p>
-          <ol>
+          <ol className="album-details__tracklist" data-cy="album-tracklist">
             {tracks}
           </ol>
         </div>
