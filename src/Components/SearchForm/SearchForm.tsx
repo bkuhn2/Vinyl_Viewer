@@ -7,6 +7,24 @@ const SearchForm = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [albumsByArtist, setAlbumsByArtist] = useState([]);
 
+  const searchArtists = (event: React.SyntheticEvent) => {
+    event.preventDefault()
+
+    fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${searchTerm}&api_key=fcf48a134034bb684aa87d0e0309a0fd
+    &format=json`)
+      .then(response => response.json())
+      .then(data => {
+        setSearchResults(data.results.artistmatches.artist)
+      })
+
+    clearInputs()
+
+  } /*Need declare searchArtists type?? not as void??*/
+
+  const clearInputs = () => {
+    setSearchTerm('')
+  }
+
   return (
     <div className='search-page'>
       <h1>Explore</h1>
@@ -18,7 +36,10 @@ const SearchForm = () => {
           value={searchTerm} 
           onChange={event => setSearchTerm(event.target.value)}
           />
-        <button className='search-button'>Search</button>
+        <button 
+          onClick={event => searchArtists(event)} 
+          className='search-button'>Search
+        </button>
       </form>
     </div>
   )
