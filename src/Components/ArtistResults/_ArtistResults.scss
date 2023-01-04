@@ -1,2 +1,12 @@
 @use '../../Utilities/mixins';
 @use '../../Utilities/variables';
+
+.artist-results-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-style: solid;
+  width: 60vw;
+  height: 90vh;
+  margin-top: 25px;
+}
