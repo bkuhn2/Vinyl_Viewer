@@ -11,7 +11,9 @@
     align-items: center;
     justify-content: center;
     width:50vw;
-    color: inherit;
+    color: white;
+    font-size: 5vh;
+    text-shadow: 2px 2px 4px black;
     text-decoration: inherit;
 }
 
@@ -20,7 +22,6 @@
 }
 
 .split-screen .split:not(:hover) {
-    color:#00ffff;
     -webkit-filter: grayscale(1);
     -moz-filter: grayscale(1);
     -ms-filter: grayscale(1);
@@ -29,11 +30,13 @@
   }
 
 .artist-search {
-    background-color: red;
+    background-image: url("../../Images/RecordsTop.JPG");
+    background-size: cover;
 }
 
 .user-collection {
-    background-color: blue;
+    background-image: url("../../Images/RecordsSide.JPG");
+    background-size: cover;
 }
 
 h1 {
