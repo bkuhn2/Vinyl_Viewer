@@ -3,16 +3,14 @@ import { Link, useParams } from 'react-router-dom';
 import './_SearchForm.scss'
 import ArtistResults from '../ArtistResults/ArtistResults';
 
-type Props = {
-}
 
-const SearchForm = (props: Props) => {
+const SearchForm = () => {
 
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchField, setSearchField] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [albumsByArtist, setAlbumsByArtist] = useState([]);
-  let searchName: string = useParams().artistName!;
-  let currentArtist: string;
+  let searchName: string = useParams().searchName!;  
+  let selectedArtist: string = useParams().artistName!;
 
   const searchArtists = () => {
     fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${searchName}&api_key=fcf48a134034bb684aa87d0e0309a0fd
@@ -21,19 +19,41 @@ const SearchForm = (props: Props) => {
       .then(data => {
         setSearchResults(data.results.artistmatches.artist.map((datum: {name: string}) => datum.name));
       });
-
-    clearSearchTerm();
+    clearSearchField();
   }
 
-  const clearSearchTerm = () => {
-    setSearchTerm('')
+  const retrieveAlbums = (selectedArtist: string) => {
+    fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${selectedArtist}&api_key=fcf48a134034bb684aa87d0e0309a0fd&format=json`)
+      .then(response => response.json())
+      .then(data => {
+        setAlbumsByArtist(data.topalbums.album)
+      })
+  }
+
+  const clearSearchField = () => {
+    setSearchField('')
+  }
+
+  const clearAlbums = () => {
+    setAlbumsByArtist([]);
   }
 
   useEffect(() => {
     if (searchName) {
       searchArtists()
+    } {
+      setSearchResults([])
     }
   }, [searchName])
+
+  useEffect(() => {
+    if (selectedArtist) {
+      retrieveAlbums(selectedArtist)
+    } else {
+      setAlbumsByArtist([])
+    }
+  }, [selectedArtist])
+
 
   return (
     <div className='search-page'>
@@ -43,15 +63,15 @@ const SearchForm = (props: Props) => {
           className='search-input' 
           type='text' 
           placeholder='Search for your favorite artists' 
-          value={searchTerm} 
-          onChange={event => setSearchTerm(event.target.value)}
+          value={searchField} 
+          onChange={event => setSearchField(event.target.value)}
           />
-        <Link to={`/search/${searchTerm}`}>
+        <Link to={`/search/${searchField}`}>
           <button className='search-button'>Search</button>
         </Link>
       </form>
-      {searchName && <ArtistResults name={searchName} results={searchResults}/>}
-      {/* have a conditional here for carousel */}
+      {(searchName && !selectedArtist) && <ArtistResults searchName={searchName} results={searchResults}/>}
+      {selectedArtist && <h1>Carousel goes here</h1>}
     </div>
   )
 }
