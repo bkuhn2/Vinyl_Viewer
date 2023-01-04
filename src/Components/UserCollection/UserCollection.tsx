@@ -23,7 +23,7 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
       return filteredCollection
     } else {
       let myAlbums = savedAlbums.filter(album => {
-      return album.artist === filterCollection 
+      return album.artist.includes(filterCollection)
       })  
       setCollection(myAlbums)
       return filteredCollection
@@ -56,7 +56,7 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
         <div className='form'>
           <input
             type='text'
-            placeholder='Search by Album'
+            placeholder='Search by Artist Name'
             value={filterCollection}
             onChange={event => setFilter(event.target.value)}
           />
@@ -74,11 +74,9 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
         )
       })}
       </div>
-      </main>
-      
-      
+      </main> 
     )
     }
 }
 
-export default UserCollection
+export default UserCollection;
