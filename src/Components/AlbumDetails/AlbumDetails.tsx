@@ -2,6 +2,7 @@ import {FC, useEffect, useState} from "react"
 import {Link, useParams} from "react-router-dom"
 
 import ghTemp from "../../assets/gh-cover-temp.jpeg"
+import "./_AlbumDetails.scss"
 import {fetchPage, AlbumInterface } from "../../Helper/fetchPage"
 
 interface Props {
@@ -11,6 +12,7 @@ interface Props {
 const AlbumDetails: FC<Props> = ({addToCollection}) => {
   const {artistName, albumName} = useParams()
   const [album, setAlbum] = useState<AlbumInterface>()
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     getPage()
@@ -22,6 +24,7 @@ const AlbumDetails: FC<Props> = ({addToCollection}) => {
       `http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=${formattedArtist}&album=${albumName}&format=json`
     )
     setAlbum(albumData)
+    setIsLoading(false)
   }
 
   const year = album?.releaseDate.substring(7, 11)
@@ -31,10 +34,7 @@ const AlbumDetails: FC<Props> = ({addToCollection}) => {
   const releaseDate = `${month} ${formattedDay}, ${year}`
 
   const tracks = album?.tracks.map(track => {
-    const duration = {
-
-    }
-    return <li style={duration}>{track.name}</li>
+    return <li key={`${track.trackNum}`}><>{track.name}</></li>
   })
 
   return (
@@ -64,7 +64,7 @@ const AlbumDetails: FC<Props> = ({addToCollection}) => {
             {album?.summary}
           </article>
           <p className="album-details__last-link">
-            view more on
+            {"view more on "}
             <a href={album?.lastURL} data-cy="album-link">
               Last.fm
             </a>

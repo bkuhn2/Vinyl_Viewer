@@ -2,11 +2,13 @@ import React from 'react'
 import Header from '../Header/Header'
 import { Outlet } from 'react-router-dom'
 
+import "./_MainLayout.scss"
+
 const MainLayout = () => {
   return (
     <>
       <Header />
-      <main>
+      <main className="main">
         <Outlet />
       </main>
     </>
