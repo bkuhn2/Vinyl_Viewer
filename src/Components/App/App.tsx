@@ -23,7 +23,7 @@ function App() {
     ])
     
   const addToCollection = (album: SavedAlbum): void => {
-    setUserCollection(allAlbums => [...allAlbums, album])
+    setUserCollection(userCollection => [...userCollection, album])
   }
   
   return (

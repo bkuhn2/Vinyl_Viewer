@@ -15,39 +15,20 @@ interface Props {
 
 const UserCollection: FC<Props> = ({ savedAlbums }) => {
   const[filterCollection, setFilter] = useState('')
+  const[filteredCollection, setCollection] = useState<AlbumsArray[]>(savedAlbums)
+  
   
   const filterAlbums = () => {
-    
-    let myAlbums = savedAlbums.filter(album => {
-      return album.albumTitle === filterCollection
-    })  
-    console.log(myAlbums);
-    
-    return (
-      <main className='my-collection'>
-        <div className='form'>
-          <input
-            type='text'
-            placeholder='Search by Album'
-            value={filterCollection}
-            onChange={event => setFilter(event.target.value)}
-          />
-        <button onClick={() => filterAlbums()}>Search</button>
-        </div>
-        <div className='album-display'>
-        {myAlbums.map((album) => {
-          return (
-            <div>
-              <p>{album.albumTitle}</p>
-              <p>{album.artist}</p>
-              <p>{album.year}</p>
-              <p>{album.coverUrl}</p>
-            </div>
-        )
-      })}
-        </div>
-      </main>
-    )
+    if(filterCollection === ''){
+      return filteredCollection
+    } else {
+      let myAlbums = savedAlbums.filter(album => {
+      return album.artist === filterCollection 
+      })  
+      setCollection(myAlbums)
+      return filteredCollection
+    }
+
   }
     if(savedAlbums.length === 0){
       return(
@@ -82,7 +63,7 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
         <button onClick={() => filterAlbums()}>Search</button>
       </div>
       <div className='album-display'>
-      {savedAlbums.map((album) => {
+      {filteredCollection.map((album) => {
         return (
           <div className='album-card'>
             <p>{album.albumTitle}</p>
