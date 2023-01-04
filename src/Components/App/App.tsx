@@ -1,4 +1,4 @@
-import React, {FunctionComponent, PropsWithChildren} from 'react';
+import React, { useState } from 'react';
 import './_App.scss';
 import { Routes, Route } from 'react-router-dom';
 import Home from '../Home/Home';
@@ -9,11 +9,15 @@ import UserCollection from '../UserCollection/UserCollection';
 
 
 function App() {
+  const[allAlbums, setAlbums] = useState([
+    {title: "", id: 0, image: ""}])
+      // {title: "tom petty", id: 1, image:"dummy url"}, 
+      // {title: "Master of Puppets", id: 2, image:"dummy url 2"}
+    // ]//)
 
-  const allAlbums = [
-    {title: "tom petty", id: 1, image:"dummy url"}, 
-    {title: "Master of Puppets", id: 2, image:"dummy url 2"}
-  ];
+  const addToMyCollection = (newAlbum: {title: string, id: number, image: string}) => {
+    setAlbums(allAlbums => [...allAlbums, newAlbum])
+  }
   
   return (
     <Routes>

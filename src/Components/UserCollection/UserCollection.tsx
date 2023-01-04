@@ -26,7 +26,7 @@ const UserCollection = (savedAlbums: AlbumsListProps) => {
       return (
         <div>
           <p>{album.title}</p>
-          <p>{album.id}</p>
+          {/* <p>{album.id}</p> */}
           <p>{album.image}</p>
         </div>
       )
