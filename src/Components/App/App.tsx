@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import './_App.scss';
 import { Routes, Route } from 'react-router-dom';
 import Home from '../Home/Home';
@@ -7,7 +7,21 @@ import SearchForm from '../SearchForm/SearchForm';
 import AlbumDetails from '../AlbumDetails/AlbumDetails';
 import UserCollection from '../UserCollection/UserCollection';
 
+interface SavedAlbum {
+  id: number,
+  albumTitle: string,
+  artist: string,
+  year: number,
+  coverURL: string
+}
+
 function App() {
+  const [userCollection, setUserCollection] = useState<SavedAlbum[]>([])
+
+  const addToCollection = (album: SavedAlbum): void => {
+    setUserCollection(collection => [...collection, album])
+  }
+
   return (
     <Routes>
       <Route path='/' element={<Home />}/>
@@ -16,7 +30,7 @@ function App() {
           <Route index element={<SearchForm />}/>
           <Route path=':artistName' element={<SearchForm />}/>
         </Route>
-        <Route path='/album/:id' element={<AlbumDetails />}/>
+        <Route path='/album/:artist/:album' element={<AlbumDetails addToCollection={addToCollection} />}/>
         <Route path='/my-collection' element={<UserCollection />}/>
       </Route>
     </Routes>
