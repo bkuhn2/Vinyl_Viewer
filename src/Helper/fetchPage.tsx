@@ -12,9 +12,8 @@ export const fetchPage = async (url: string): Promise<AlbumInterface> => {
       artist: album.artist,
       album: album.name
     })),
-    // listeners: album.listeners,
     releaseDate: album.wiki.published,
-    summary: album.wiki.summary,
+    article: album.wiki.summary,
     lastURL: album.url
   }
 }
@@ -24,9 +23,8 @@ export interface AlbumInterface {
   artist: string
   image: string
   tracks: [Record<string, Track>]
-  // listeners: string
   releaseDate: string
-  summary: string
+  article: string
   lastURL: string
 }
 

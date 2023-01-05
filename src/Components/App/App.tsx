@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './_App.scss';
 import { Routes, Route } from 'react-router-dom';
 import Home from '../Home/Home';

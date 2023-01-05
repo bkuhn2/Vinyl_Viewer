@@ -1,5 +1,5 @@
 import {FC, useEffect, useState} from "react"
-import {Link, useParams} from "react-router-dom"
+import {useParams} from "react-router-dom"
 
 import ghTemp from "../../assets/gh-cover-temp.jpeg"
 import "./_AlbumDetails.scss"
@@ -70,6 +70,9 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection}) => {
     <p>this album is saved in your collection</p>
   </div>
 
+  const articleIndex =  album?.article.indexOf("<")
+  const formattedArticle = album?.article.substring(0, articleIndex) + "..."
+
   return (
     <>
       <span className="directory">
@@ -102,7 +105,7 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection}) => {
             released on: {releaseDate}
           </p>
           <article className="album-details__article" data-cy="album-article">
-            {album?.summary}
+            {formattedArticle}
           </article>
           <p className="album-details__last-link">
             {"view more on "}
