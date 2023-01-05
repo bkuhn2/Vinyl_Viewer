@@ -1,10 +1,10 @@
-import {FC, useEffect, useState} from "react"
-import {useParams} from "react-router-dom"
+import { FC, useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 
-import ghTemp from "../../assets/gh-cover-temp.jpeg"
 import "./_AlbumDetails.scss"
-import {fetchPage, AlbumInterface} from "../../Helper/fetchPage"
-import {SavedAlbum} from "../App/App"
+import { fetchPage, AlbumInterface } from "../../Helper/fetchPage"
+import formatReleaseDate from "../../Helper/formatReleaseDate"
+import { SavedAlbum } from "../App/App"
 
 interface Props {
   addToCollection: Function
@@ -46,17 +46,19 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection}) => {
       id: Date.now(),
       albumTitle: album?.name,
       artist: album?.artist,
-      releaseDate: releaseDate,
+      releaseDate: formattedDate,
       coverUrl: album?.image,
     })
     setIsSaved(true)
   }
 
-  const year = album?.releaseDate.substring(7, 11)
-  const month = album?.releaseDate.substring(3, 6)
-  const day = album?.releaseDate.substring(0, 3)
-  const formattedDay = Number(day) < 10 ? day?.substring(1, 2) : day
-  const releaseDate = `${month} ${formattedDay}, ${year}`
+  const getReleaseDate = () => {
+    const returnedDate: string = formatReleaseDate(album?.releaseDate!)
+    formattedDate = returnedDate
+    return returnedDate
+  }
+
+  let formattedDate: string
 
   const tracks = album?.tracks.map(track => {
     return (
@@ -106,7 +108,7 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection}) => {
                 </button>
               )}
               <p className="album-details__date" data-cy="album-date">
-                released on: {releaseDate}
+                released on: {album?.releaseDate && getReleaseDate()}
               </p>
               <article
                 className="album-details__article"
