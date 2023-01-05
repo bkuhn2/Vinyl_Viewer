@@ -18,8 +18,8 @@ interface SavedAlbum {
 
 function App() {
   const[userCollection, setUserCollection] = useState<SavedAlbum[]>([
-      {id: 1, albumTitle: "Mojo", artist: "Tom Petty", year: 2010, coverUrl: "image"}, 
-      {id: 2, albumTitle: "Gone Gator", artist: "Tom Petty & the Heartbreakers", year: 1976, coverUrl: "image"}
+    {id: 1, albumTitle: "Mojo", artist: "Tom Petty", year: 2010, coverUrl: "image"}, 
+    {id: 2, albumTitle: "Gone Gator", artist: "Tom Petty & the Heartbreakers", year: 1976, coverUrl: "image"}
     ])
     
   const addToCollection = (album: SavedAlbum): void => {
