@@ -34,13 +34,14 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
       </header>
       <div className='form'>
         <input
+          className='search-input'
           type='text'
           placeholder='Search by Artist Name'
           value={filterCollection}
           onChange={event => setFilter(event.target.value)}
         />
-        <button onClick={() => filterAlbums()}>Search Artist</button>
-        <button onClick={() => clearInputs()}>Clear Search Filter</button>
+        <button className='filter-button' onClick={() => filterAlbums()}>Search Artist</button>
+        <button className='filter-button' onClick={() => clearInputs()}>Clear Search Filter</button>
       </div>
       <div className='album-display'>
         {savedAlbums.length === 0 && <h2>Nothing to display, go search and save some albums!</h2>}
