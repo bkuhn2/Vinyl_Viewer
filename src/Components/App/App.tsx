@@ -7,6 +7,8 @@ import SearchForm from '../SearchForm/SearchForm';
 import AlbumDetails from '../AlbumDetails/AlbumDetails';
 import UserCollection from '../UserCollection/UserCollection';
 
+import testCollectionData from '../../testCollectionData';
+
 export interface SavedAlbum {
   id: number,
   albumTitle: string,
@@ -16,7 +18,7 @@ export interface SavedAlbum {
 }
 
 function App() {
-  const [userCollection, setUserCollection] = useState<SavedAlbum[]>([])
+  const [userCollection, setUserCollection] = useState<SavedAlbum[]>([...testCollectionData])
 
   const addToCollection = (album: SavedAlbum): void => {
     setUserCollection(collection => [...collection, album])
@@ -31,7 +33,7 @@ function App() {
           <Route path=':artistName' element={<SearchForm />}/>
         </Route>
         <Route path='/album/:artistName/:albumName' element={<AlbumDetails userCollection={userCollection} addToCollection={addToCollection} />}/>
-        <Route path='/my-collection' element={<UserCollection />}/>
+        <Route path='/my-collection' element={<UserCollection savedAlbums={userCollection}/>}/>
       </Route>
     </Routes>
   );
