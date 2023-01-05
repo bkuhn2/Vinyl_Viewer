@@ -7,12 +7,12 @@ import SearchForm from '../SearchForm/SearchForm';
 import AlbumDetails from '../AlbumDetails/AlbumDetails';
 import UserCollection from '../UserCollection/UserCollection';
 
-interface SavedAlbum {
+export interface SavedAlbum {
   id: number,
   albumTitle: string,
   artist: string,
-  year: number,
-  coverURL: string
+  releaseDate: string,
+  coverUrl: string
 }
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
           <Route index element={<SearchForm />}/>
           <Route path=':artistName' element={<SearchForm />}/>
         </Route>
-        <Route path='/album/:artistName/:albumName' element={<AlbumDetails addToCollection={addToCollection} />}/>
+        <Route path='/album/:artistName/:albumName' element={<AlbumDetails userCollection={userCollection} addToCollection={addToCollection} />}/>
         <Route path='/my-collection' element={<UserCollection />}/>
       </Route>
     </Routes>

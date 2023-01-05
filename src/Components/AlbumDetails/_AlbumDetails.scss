@@ -18,6 +18,18 @@
   width: min(50%, 740px);
 }
 
+.saved-message {
+  display: flex;
+  align-items: center;
+  background-color: #bfebbf;
+  height: 38px;
+  width: 297px;
+
+  & p {
+    margin: 0px 15px;
+  }
+}
+
 .cover {
   display: flex;
   align-items: center;
@@ -29,7 +41,7 @@
 
 .cover__mat {
   display: flex;
-  width: 48%;
+  width: 80%;
   aspect-ratio: 1 / 1;
 }
 

@@ -3,28 +3,53 @@ import {Link, useParams} from "react-router-dom"
 
 import ghTemp from "../../assets/gh-cover-temp.jpeg"
 import "./_AlbumDetails.scss"
-import {fetchPage, AlbumInterface } from "../../Helper/fetchPage"
+import {fetchPage, AlbumInterface} from "../../Helper/fetchPage"
+import {SavedAlbum} from "../App/App"
 
 interface Props {
   addToCollection: Function
+  userCollection: SavedAlbum[]
 }
 
-const AlbumDetails: FC<Props> = ({addToCollection}) => {
+const AlbumDetails: FC<Props> = ({addToCollection, userCollection}) => {
   const {artistName, albumName} = useParams()
   const [album, setAlbum] = useState<AlbumInterface>()
   const [isLoading, setIsLoading] = useState(true)
+  const [isSaved, setIsSaved] = useState(false)
 
   useEffect(() => {
     getPage()
+    determineSaved()
   }, [])
 
   const getPage = async () => {
-    const formattedArtist: string | undefined = artistName?.replace(/ /g, "+")
     const albumData = await fetchPage(
-      `http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=${formattedArtist}&album=${albumName}&format=json`
+      `http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=${artistName}&album=${albumName}&format=json`
     )
     setAlbum(albumData)
     setIsLoading(false)
+  }
+
+  const determineSaved = () => {
+    const isSaved = userCollection.some(album => {
+      const sameArtistName =
+        album.artist.toLowerCase() === artistName?.replace(/\+/g, " ")
+      const sameAlbumName =
+        album.albumTitle.toLowerCase() === albumName?.replace(/\+/g, " ")
+      return sameArtistName && sameAlbumName
+    })
+    setIsSaved(isSaved)
+  }
+
+  const handleSubmit = () => {
+    addToCollection({
+      id: Date.now(),
+      albumTitle: album?.name,
+      artist: album?.artist,
+      releaseDate: releaseDate,
+      coverUrl: album?.image,
+    })
+    setIsSaved(true)
   }
 
   const year = album?.releaseDate.substring(7, 11)
@@ -34,8 +59,16 @@ const AlbumDetails: FC<Props> = ({addToCollection}) => {
   const releaseDate = `${month} ${formattedDay}, ${year}`
 
   const tracks = album?.tracks.map(track => {
-    return <li key={`${track.trackNum}`}><>{track.name}</></li>
+    return (
+      <li key={`${track.trackNum}`}>
+        <>{track.name}</>
+      </li>
+    )
   })
+
+  const previouslySavedMessage = <div className="saved-message">
+    <p>this album is saved in your collection</p>
+  </div>
 
   return (
     <>
@@ -54,11 +87,19 @@ const AlbumDetails: FC<Props> = ({addToCollection}) => {
           <h1 className="album-details__name" data-cy="album-name">
             {album?.name}
           </h1>
-          <button className="add-button" data-cy="add-button">
-            add to my collection
-          </button>
+          {isSaved ? (
+            previouslySavedMessage
+          ) : (
+            <button
+              className="add-button"
+              data-cy="add-button"
+              onClick={() => handleSubmit()}
+            >
+              add to my collection
+            </button>
+          )}
           <p className="album-details__date" data-cy="album-date">
-            {releaseDate}
+            released on: {releaseDate}
           </p>
           <article className="album-details__article" data-cy="album-article">
             {album?.summary}
