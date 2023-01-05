@@ -28,7 +28,10 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
   }
   
   return (
-    <main className='my-collection'>
+    <section className='my-collection'>
+      <header className='collection-header'>
+        <h1>My Collection</h1>
+      </header>
       <div className='form'>
         <input
           type='text'
@@ -52,7 +55,7 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
           />
         ))}
       </div>
-    </main> 
+    </section> 
   )
 }
 
