@@ -1,29 +1,22 @@
-import React, { useState, FC } from 'react'
+import { useState, FC } from 'react'
 import AlbumCard from '../AlbumCard/AlbumCard'
+import { SavedAlbum } from '../App/App'
 import './_UserCollection.scss'
 
-interface AlbumsArray {
-  id: number,
-  albumTitle: string,
-  artist: string, 
-  year: number,
-  coverUrl: string
-}
-
 interface Props {
-  savedAlbums: AlbumsArray[]
+  savedAlbums: SavedAlbum[]
 }
 
 const UserCollection: FC<Props> = ({ savedAlbums }) => {
   const[filterCollection, setFilter] = useState('')
-  const[filteredCollection, setCollection] = useState<AlbumsArray[]>(savedAlbums)
+  const[filteredCollection, setCollection] = useState<SavedAlbum[]>(savedAlbums)
 
   const filterAlbums = () => {
     if(filterCollection === ''){
       return filteredCollection
     } else {
       let myAlbums = savedAlbums.filter(album => {
-      return album.artist.includes(filterCollection)
+      return album.artist.toLowerCase().includes(filterCollection.toLowerCase())
       })  
       return setCollection(myAlbums)
     }
@@ -54,7 +47,7 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
           id={album.id}
           title={album.albumTitle}
           artist={album.artist}
-          year={album.coverUrl}
+          releaseDate={album.releaseDate}
           cover={album.coverUrl}
           />
         ))}

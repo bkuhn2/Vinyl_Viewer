@@ -1,2 +1,50 @@
 @use '../../Utilities/mixins';
 @use '../../Utilities/variables';
+
+.directory {
+  width: min(100%, 1480px)
+}
+
+.album-section {
+  width: min(100%, 1480px)
+}
+
+.album-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.album-details {
+  width: min(50%, 740px);
+}
+
+.saved-message {
+  display: flex;
+  align-items: center;
+  background-color: #bfebbf;
+  height: 38px;
+  width: 297px;
+
+  & p {
+    margin: 0px 15px;
+  }
+}
+
+.cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48%;
+  aspect-ratio: 1 / 1;
+  background-color: rgb(236 236 236);
+}
+
+.cover__mat {
+  display: flex;
+  width: 80%;
+  aspect-ratio: 1 / 1;
+}
+
+.cover__mat__img {
+  width: 100%;
+}

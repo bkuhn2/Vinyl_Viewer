@@ -1,2 +1,8 @@
 @use '../../Utilities/mixins';
 @use '../../Utilities/variables';
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

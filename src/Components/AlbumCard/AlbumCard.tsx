@@ -7,17 +7,17 @@ interface Props {
   id: number, 
   title: string, 
   artist: string, 
-  year: string, 
+  releaseDate: string, 
   cover: string
 }
 
-const AlbumCard = ({id, title, artist, year, cover}: Props) => {
+const AlbumCard = ({id, title, artist, releaseDate, cover}: Props) => {
     return (
       <div className='single-card' >
         <p>{id}</p>
         <p>{title}</p>
         <p>{artist}</p>
-        <p>{year}</p>
+        <p>{releaseDate}</p>
         <img src={cover} alt={"Album cover image of " + title}></img>
       </div>
     )
