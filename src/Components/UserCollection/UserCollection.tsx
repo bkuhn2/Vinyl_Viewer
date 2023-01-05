@@ -3,7 +3,7 @@ import AlbumCard from '../AlbumCard/AlbumCard'
 import './_UserCollection.scss'
 
 interface AlbumsArray {
-  id: number
+  id: number,
   albumTitle: string,
   artist: string, 
   year: number,
@@ -27,7 +27,11 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
       })  
       return setCollection(myAlbums)
     }
+  }
 
+  const clearInputs = () => {
+
+    setCollection(savedAlbums)
   }
   
   return (
@@ -39,7 +43,8 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
           value={filterCollection}
           onChange={event => setFilter(event.target.value)}
         />
-        <button onClick={() => filterAlbums()}>Search</button>
+        <button onClick={() => filterAlbums()}>Search Artist</button>
+        <button onClick={() => clearInputs()}>Clear Search Filter</button>
       </div>
       <div className='album-display'>
         {savedAlbums.length === 0 && <h2>Nothing to display, go search and save some albums!</h2>}

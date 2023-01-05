@@ -8,7 +8,7 @@ import AlbumDetails from '../AlbumDetails/AlbumDetails';
 import UserCollection from '../UserCollection/UserCollection';
 
 interface SavedAlbum {
-  id: number
+  id: number,
   albumTitle: string,
   artist: string, 
   year: number,
