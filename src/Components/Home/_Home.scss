@@ -1,2 +1,50 @@
 @use '../../Utilities/mixins';
 @use '../../Utilities/variables';
+
+.split-screen {
+    display: flex;
+    height: 100vh;
+    color: white;
+    font-size: 5vh;
+    text-shadow: 2px 2px 4px black;
+    text-decoration: inherit;
+}
+
+h1 {
+    position: absolute;
+    text-align: center;
+    width:100vw;
+
+    z-index: 10;
+}
+
+.split {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:50vw;
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.split:hover {
+    width: 60vw;
+}
+
+.split-screen .split:not(:hover) {
+    -webkit-filter: grayscale(1);
+    -moz-filter: grayscale(1);
+    -ms-filter: grayscale(1);
+    filter: grayscale(1);
+    opacity: .75;
+  }
+
+.artist-search {
+    background-image: url("../../Images/RecordsTop.JPG");
+    background-size: cover;
+}
+
+.user-collection {
+    background-image: url("../../Images/RecordsSide.JPG");
+    background-size: cover;
+}
