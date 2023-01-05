@@ -48,7 +48,16 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
       </div>
       <div className='album-display'>
         {savedAlbums.length === 0 && <h2>Nothing to display, go search and save some albums!</h2>}
-        {savedAlbums.length > 0 && <AlbumCard albumCards={filteredCollection}/>}
+        {filteredCollection.map(album => (
+          <AlbumCard 
+          key={album.id} 
+          id={album.id}
+          title={album.albumTitle}
+          artist={album.artist}
+          year={album.coverUrl}
+          cover={album.coverUrl}
+          />
+        ))}
       </div>
     </main> 
   )

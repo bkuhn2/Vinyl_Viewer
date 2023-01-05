@@ -2,38 +2,24 @@ import { keyboard } from '@testing-library/user-event/dist/keyboard'
 import React, { FC } from 'react'
 import './_AlbumCard.scss'
 
-interface AlbumsArray {
-  id: number,
-  albumTitle: string,
-  artist: string, 
-  year: number,
-  coverUrl: string
-}
-
 interface Props {
-  albumCards: AlbumsArray[]
+  key: number, 
+  id: number, 
+  title: string, 
+  artist: string, 
+  year: string, 
+  cover: string
 }
 
-
-const AlbumCard: FC<Props> = ({ albumCards }) => {
-  const newCards = albumCards.map(album => {
+const AlbumCard = ({id, title, artist, year, cover}: Props) => {
     return (
-      <div className='single-card'>
-        <p>{album.id}</p>
-        <p>{album.albumTitle}</p>
-        <p>{album.artist}</p>
-        <p>{album.year}</p>
-        <img src={album.coverUrl} alt={"Album cover image of " + album.albumTitle}></img>
+      <div className='single-card' >
+        <p>{id}</p>
+        <p>{title}</p>
+        <p>{artist}</p>
+        <p>{year}</p>
+        <img src={cover} alt={"Album cover image of " + title}></img>
       </div>
-    )
-  })
-
-
-
-  return( 
-    <div className='album-cards'>
-      {newCards}
-    </div>
     )
 }
 
