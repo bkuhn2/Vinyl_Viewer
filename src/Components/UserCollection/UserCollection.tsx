@@ -30,7 +30,7 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
   }
 
   const clearInputs = () => {
-
+    setFilter('')
     setCollection(savedAlbums)
   }
   
