@@ -17,7 +17,9 @@ const SearchForm = () => {
     &format=json`)
       .then(response => response.json())
       .then(data => {
-        setSearchResults(data.results.artistmatches.artist.map((datum: {name: string}) => datum.name));
+        setSearchResults(
+          data.results.artistmatches.artist.map((datum: {name: string}) => datum.name)
+        );
       });
     clearSearchField();
   }
@@ -26,7 +28,14 @@ const SearchForm = () => {
     fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${selectedArtist}&api_key=fcf48a134034bb684aa87d0e0309a0fd&format=json`)
       .then(response => response.json())
       .then(data => {
-        setAlbumsByArtist(data.topalbums.album)
+        setAlbumsByArtist(
+          data.topalbums.album.map((datum: 
+            {name: string, 
+            image: [{size: string, '#text': string}, {size: string, '#text': string}, {size: string, '#text': string}, {size: string, '#text': string}]}
+            ) => {
+            return {name: datum.name, picURL: datum.image[3]['#text']}
+          })
+        )
       })
   }
 
