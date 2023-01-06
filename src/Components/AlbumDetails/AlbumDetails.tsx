@@ -22,6 +22,7 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection}) => {
   }, [])
 
   const getPage = async () => {
+    console.log(artistName, albumName)
     const albumData = await fetchPage(
       `http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=${artistName}&album=${albumName}&format=json`
     )
@@ -73,7 +74,7 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection}) => {
   )
 
   const articleIndex = album?.article.indexOf("<")
-  const formattedArticle = album?.article.substring(0, articleIndex) + "..."
+  const formattedArticle = album?.article.substring(0, articleIndex)
 
   return (
     <>
@@ -113,6 +114,7 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection}) => {
                 data-cy="album-article"
               >
                 {formattedArticle}
+                {/* {formattedArticle.length < album.article.length } */}
               </article>
               <p className="album-details__last-link">
                 {"view more on "}
