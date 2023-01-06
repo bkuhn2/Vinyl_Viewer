@@ -18,11 +18,13 @@ describe("My Collection test", () => {
   it("Should display what the user has typed in the input field", () => {
     cy.get(".search-input").type("heart").should("have.value", "heart")
   })
-  it("Should display only the search filters", () => {
+  it("Should display only the search filters and display all albums when clear filters is pressed", () => {
     cy.get(".search-input").type("heart").should("have.value", "heart")
       cy.get(".filter-button").click()
         cy.get(".single-card").should("have.length", "1")
         cy.get(".single-card").should("contain", "Gone Gator")
+      cy.get(".clear-filter-button").click()
+        cy.get(".single-card").should("have.length", "2")
   })
   it("Should display an image with an alt tag", () => {
     cy.get(".single-card").eq(0).within(() => {
