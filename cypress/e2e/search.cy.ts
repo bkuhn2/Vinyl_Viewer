@@ -1,17 +1,18 @@
 /// <reference types="cypress" />
 // @ts-check
 
+
 describe('Search Page Functionality', () => {
 
   beforeEach(() => {
-    
     cy.intercept(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=Smash%20Mouth&api_key=fcf48a134034bb684aa87d0e0309a0fd%20%20%20%20&format=json`, {
       method: 'GET',
       fixture: '../fixtures/searchResults.json'
     });
-
-    //additional intercept for next fetches
-
+    cy.intercept(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=Smash%20Mouth&api_key=fcf48a134034bb684aa87d0e0309a0fd&format=json`, {
+      method: 'GET',
+      fixture: '../fixtures/searchResultsAlbums.json'
+    })
     cy.visit('http://localhost:3000/search');
   })
 
@@ -52,6 +53,23 @@ describe('Search Page Functionality', () => {
     cy.get('.artist-results-section')
       .get('#0')
       .should('have.attr', 'href', '/search/Smash Mouth/Smash Mouth')
+  });
+
+  it('Should retrieve albums data when clicking on a search result', () => {
+    cy.get('.search-input')
+    .type('Smash Mouth')
+
+    cy.get('.search-button')
+      .click()
+
+    cy.get('.artist-results-section')
+      .get('#0')
+      .click();
+
+    /*
+      Incomplete, need check carousel for visual confirmation 
+      but I did verify that state does update to the stubbed fixture data
+    */
   });
 
 })
