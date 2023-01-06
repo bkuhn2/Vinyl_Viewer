@@ -21,6 +21,7 @@ const Carousel = ({ albums, artist }: Props) => {
         to={`/album/${formatURLString(artist)}/${formatURLString(album.name)}`}
       >
         <img
+        className="album-image"
         src={album.picURL}
         />
         <h2>{album.name}</h2>
