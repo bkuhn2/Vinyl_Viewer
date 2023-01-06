@@ -16,7 +16,7 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
       return filteredCollection
     } else {
       let myAlbums = savedAlbums.filter(album => {
-      return album.artist.toLowerCase().includes(filterCollection.toLowerCase())
+      return album.artist.toLowerCase().includes(filterCollection.toLowerCase()) || album.albumTitle.toLowerCase().includes(filterCollection.toLowerCase())
       })  
       return setCollection(myAlbums)
     }
@@ -28,16 +28,20 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
   }
   
   return (
-    <main className='my-collection'>
+    <section className='my-collection'>
+      <header className='collection-header'>
+        <h1>My Collection</h1>
+      </header>
       <div className='form'>
         <input
+          className='search-input'
           type='text'
-          placeholder='Search by Artist Name'
-          value={filterCollection}
+          placeholder='Search by Artist or Album'
+          value={filterCollection} 
           onChange={event => setFilter(event.target.value)}
         />
-        <button onClick={() => filterAlbums()}>Search Artist</button>
-        <button onClick={() => clearInputs()}>Clear Search Filter</button>
+        <button className='filter-button' onClick={() => filterAlbums()}>Search</button>
+        <button className='clear-filter-button' onClick={() => clearInputs()}>Clear Search Filter</button>
       </div>
       <div className='album-display'>
         {savedAlbums.length === 0 && <h2>Nothing to display, go search and save some albums!</h2>}
@@ -52,7 +56,7 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
           />
         ))}
       </div>
-    </main> 
+    </section> 
   )
 }
 
