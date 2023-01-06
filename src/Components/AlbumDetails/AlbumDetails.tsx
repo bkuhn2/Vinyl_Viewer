@@ -1,5 +1,5 @@
 import {FC, useEffect, useState} from "react"
-import {useParams} from "react-router-dom"
+import {useParams, Link} from "react-router-dom"
 
 import "./_AlbumDetails.scss"
 import {AlbumInterface} from "../../Helper/fetchPage"
@@ -43,16 +43,18 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
   }
 
   const getReleaseDate = () => {
-    const returnedDate: string = formatReleaseDate(album.releaseDate!)
+    const returnedDate: string = formatReleaseDate(album.releaseDate)
     formattedDate = returnedDate
     return returnedDate
   }
 
   let formattedDate: string
 
-  const tracks = album.tracks.map(track => {
-    return <li key={track.trackNum}>{track.name}</li>
-  })
+  const tracks = !!album.tracks
+    ? album.tracks.map(track => {
+        return <li key={track.trackNum}>{track.name}</li>
+      })
+    : null
 
   const previouslySavedMessage = (
     <div className="saved-message" data-cy="saved-message">
@@ -60,15 +62,15 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
     </div>
   )
 
-  const articleIndex = album.article.indexOf("<")
-  const formattedArticle = album.article.substring(0, articleIndex)
+  const formattedArticle = !!album.article
+    ? album.article.substring(0, album.article.indexOf("<"))
+    : null
 
   return (
     <>
       <span className="directory">
         <span className="directory__artist" data-cy="directory-artist">
-          {album.artist}
-          {/* <Link /> to SearchForm with current artist as query can go here later */}
+          <Link to={`/search/${artistName}`}>{album.artist}</Link>
         </span>
         <span className="directory__album" data-cy="directory-album">
           {" "}
@@ -92,20 +94,22 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
             </button>
           )}
           <p className="album-details__date" data-cy="album-date">
-            released on: {album.releaseDate && getReleaseDate()}
+            {!!album.releaseDate && `released on: ${getReleaseDate()}`}
           </p>
           <article className="album-details__article" data-cy="album-article">
-            {formattedArticle}{"... (cont.)"}
+            {!!formattedArticle && `${formattedArticle}... (cont.)`}
           </article>
           <p className="album-details__last-link">
-            {"view more on "}
+            {"view on "}
             <a href={album.lastURL} data-cy="album-link">
               Last.fm
             </a>
           </p>
-          <ol className="album-details__tracklist" data-cy="album-tracklist">
-            {tracks}
-          </ol>
+          {!!tracks &&
+            <ol className="album-details__tracklist" data-cy="album-tracklist">
+              {tracks}
+            </ol>
+          }
         </div>
         <div className="cover">
           <div className="cover__mat">

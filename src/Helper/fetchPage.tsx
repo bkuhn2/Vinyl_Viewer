@@ -5,15 +5,15 @@ export const fetchPage = async (url: string): Promise<AlbumInterface> => {
     name: album.name,
     artist: album.artist,
     image: album.image[4]["#text"],
-    tracks: album.tracks.track.map((track: FetchedTrack) => ({
+    tracks: !!album.tracks ? album.tracks.track.map((track: FetchedTrack) => ({
       name: track.name,
       duration: track.duration,
       trackNum: track["@attr"]["rank"],
       artist: album.artist,
       album: album.name
-    })),
-    releaseDate: album.wiki.published,
-    article: album.wiki.summary,
+    })) : null,
+    releaseDate: !!album.wiki?.published ? album.wiki.published : null,
+    article: !!album.wiki?.summary ? album.wiki.summary : null,
     lastURL: album.url
   }
 }
