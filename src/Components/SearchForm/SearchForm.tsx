@@ -62,7 +62,9 @@ const SearchForm = () => {
 
   return (
     <div className='search-page'>
-      <h1>Explore</h1>
+      <header className='search-header'>
+        <h1>Explore</h1>
+      </header>
       <form className='search-form'>
         <input
           className='search-input' 
@@ -76,7 +78,7 @@ const SearchForm = () => {
         </Link>
       </form>
       {(searchName && !selectedArtist) && <ArtistResults searchName={searchName} results={searchResults}/>}
-      {selectedArtist && <h1>Carousel goes here</h1>}
+      {selectedArtist && <p>Carousel goes here</p>}
     </div>
   )
 }
