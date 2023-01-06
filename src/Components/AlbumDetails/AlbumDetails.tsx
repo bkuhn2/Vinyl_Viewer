@@ -34,23 +34,23 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
   const handleSubmit = () => {
     addToCollection({
       id: Date.now(),
-      albumTitle: album?.name,
-      artist: album?.artist,
+      albumTitle: album.name,
+      artist: album.artist,
       releaseDate: formattedDate,
-      coverUrl: album?.image,
+      coverUrl: album.image,
     })
     setIsSaved(true)
   }
 
   const getReleaseDate = () => {
-    const returnedDate: string = formatReleaseDate(album?.releaseDate!)
+    const returnedDate: string = formatReleaseDate(album.releaseDate!)
     formattedDate = returnedDate
     return returnedDate
   }
 
   let formattedDate: string
 
-  const tracks = album?.tracks.map(track => {
+  const tracks = album.tracks.map(track => {
     return <li key={track.trackNum}>{track.name}</li>
   })
 
@@ -60,8 +60,8 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
     </div>
   )
 
-  const articleIndex = album?.article.indexOf("<")
-  const formattedArticle = album?.article.substring(0, articleIndex)
+  const articleIndex = album.article.indexOf("<")
+  const formattedArticle = album.article.substring(0, articleIndex)
 
   return (
     <>
