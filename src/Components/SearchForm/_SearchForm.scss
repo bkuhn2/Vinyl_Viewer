@@ -37,12 +37,13 @@
 
 .carousel-container {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: row;
   margin: 5%;
   width: 80vw;
   height: 60vh;
   border-style: solid;
-  overflow-y:auto
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
 }
