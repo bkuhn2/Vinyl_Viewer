@@ -22,16 +22,14 @@ describe("My Collection test", () => {
     cy.get(".search-input").type("heart").should("have.value", "heart")
       cy.get(".filter-button").click()
         cy.get(".single-card").should("have.length", "1")
-        cy.get(".single-card").should("contain", "Gone Gator")
+        cy.get(".single-card").contains("Gone Gator")
       cy.get(".clear-filter-button").click()
         cy.get(".single-card").should("have.length", "2")
   })
   it("Should display an image with an alt tag", () => {
     cy.get(".single-card").eq(0).within(() => {
       cy.get(".album-image").should("be.visible")
-      cy.get(".album-image").should(([img]) => {
-        expect(img.alt).contains("Album cover image of Mojo")
-      })
+      cy.get(".album-image").should("have.attr", "alt", "Album cover image of Mojo")
     })
   })
 })
