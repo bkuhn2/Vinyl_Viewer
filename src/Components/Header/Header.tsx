@@ -1,10 +1,34 @@
 import React from 'react'
+import { Link } from "react-router-dom"
+
+import "./_Header.scss"
 
 const Header = () => {
+
   return (
-    <div>
-      <h1>HEADER</h1>
-    </div>
+    <header className="header">
+      <Link to="/">
+        <h1 className="header__title">VINYL VIEWER</h1>
+      </Link>
+      <nav className="nav">
+        <ul className="nav__list">
+          <li>
+            <Link to="/search">
+              <button 
+                className="nav-button"
+              >EXPLORE</button>
+            </Link>
+          </li>
+          <li>
+            <Link to="/my-collection">
+              <button 
+                className="nav-button"
+              >MY COLLECTION</button>
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </header>
   )
 }
 

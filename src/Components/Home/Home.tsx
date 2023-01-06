@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
       <div className="split-screen">
-        <h1>Vinyl Viewer</h1>
+        <h1 className="split-screen__title">Vinyl Viewer</h1>
         <Link className="artist-search split" to={`/search`}>
             <h2>Search Artists</h2>
         </Link>

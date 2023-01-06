@@ -10,11 +10,10 @@
     text-decoration: inherit;
 }
 
-h1 {
+.split-screen__title {
     position: absolute;
     text-align: center;
-    width:100vw;
-
+    width: 100vw;
     z-index: 10;
 }
 

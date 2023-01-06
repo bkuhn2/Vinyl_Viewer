@@ -1,2 +1,52 @@
 @use '../../Utilities/mixins';
 @use '../../Utilities/variables';
+
+.header {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 140px;
+  background-color: gray;
+
+}
+
+.header__title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0px;
+  font-size: 3rem;
+  color: black;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+}
+
+.nav__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  padding: 0px;
+
+  & li {
+    list-style: none;
+  }
+}
+
+.nav-button {
+  width: 180px;
+  height: 60px;
+  border: 1px solid rgb(95, 95, 95);
+  font-size: 1rem;
+
+  &:hover {
+    background-color: lighten(gray, 50%)
+  }
+}
