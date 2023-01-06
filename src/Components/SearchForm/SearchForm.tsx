@@ -5,6 +5,12 @@ import ArtistResults from '../ArtistResults/ArtistResults';
 import Carousel from '../Carousel/Carousel';
 
 
+interface FetchAlbumsDatum {
+  artist: {name: string},
+  name: string, 
+  image: [{size: string, '#text': string}, {size: string, '#text': string}, {size: string, '#text': string}, {size: string, '#text': string}]
+}
+
 const SearchForm = () => {
 
   const [searchField, setSearchField] = useState('');
@@ -18,9 +24,15 @@ const SearchForm = () => {
     &format=json`)
       .then(response => response.json())
       .then(data => {
+        console.log('search artists data: ', data);
+        
+
         setSearchResults(
           data.results.artistmatches.artist.map((datum: {name: string}) => datum.name)
         );
+
+        //clean up & to replace with 'and'? fetch doesn't seem to recognize '&' if it's in the name, only shows first artist
+
       });
     clearSearchField();
   }
@@ -29,14 +41,18 @@ const SearchForm = () => {
     fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${selectedArtist}&api_key=fcf48a134034bb684aa87d0e0309a0fd&format=json`)
       .then(response => response.json())
       .then(data => {
-        setAlbumsByArtist(
-          data.topalbums.album.map((datum: 
-            {name: string, 
-            image: [{size: string, '#text': string}, {size: string, '#text': string}, {size: string, '#text': string}, {size: string, '#text': string}]}
-            ) => {
-            return {name: datum.name, picURL: datum.image[3]['#text']}
-          })
-        )
+        console.log('getAlubms data: ', data);
+        
+        const fetchedAlbums = data.topalbums.album.map((datum: FetchAlbumsDatum) => {
+          return {
+            artist: datum.artist.name,
+            name: datum.name, 
+            picURL: datum.image[3]['#text']
+          }
+        })
+        //clean up functions: remove null/blank names; if no img url, supply a basic stock record; filter out any that are too "niche"? Only top 20?
+        //error handling - sometimes just because Last.fm gives you an artist name, doesn't mean they have any album data and will throw an error (see Smash Mouth)
+        setAlbumsByArtist(fetchedAlbums)
       })
   }
 
