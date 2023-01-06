@@ -4,8 +4,7 @@ import {Routes, Route} from "react-router-dom"
 import Home from "../Home/Home"
 import MainLayout from "../MainLayout/MainLayout"
 import SearchForm from "../SearchForm/SearchForm"
-// import AlbumDetails from '../AlbumDetails/AlbumDetails';
-import AlbumDetailsContainer from "../AlbumDetails/AlbumDetails"
+import AlbumDetailsContainer from "../AlbumDetails/AlbumDetailsContainer"
 import UserCollection from "../UserCollection/UserCollection"
 
 import testCollectionData from "../../testCollectionData"

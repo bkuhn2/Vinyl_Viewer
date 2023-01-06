@@ -1,21 +1,23 @@
-import { FC, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import {FC, useEffect, useState} from "react"
+import {useParams} from "react-router-dom"
 
 import AlbumDetails from "./AlbumDetails"
-import { SavedAlbum } from "../App/App"
-import { fetchPage, AlbumInterface } from "../../Helper/fetchPage"
+import {SavedAlbum} from "../App/App"
+import {fetchPage, AlbumInterface} from "../../Helper/fetchPage"
 
 interface ContainerProps {
   addToCollection: Function
   userCollection: SavedAlbum[]
 }
 
-const AlbumDetailsContainer: FC<ContainerProps> = ({ addToCollection, userCollection}) => {
+const AlbumDetailsContainer: FC<ContainerProps> = ({
+  addToCollection,
+  userCollection,
+}) => {
   const [album, setAlbum] = useState<AlbumInterface>()
   const {artistName, albumName} = useParams()
 
   useEffect(() => {
-    console.log("got here")
     getPage()
   }, [])
 
@@ -26,19 +28,18 @@ const AlbumDetailsContainer: FC<ContainerProps> = ({ addToCollection, userCollec
     setAlbum(albumData)
   }
 
-  if (!!album) {
-    return (
-      <AlbumDetails 
-        addToCollection={addToCollection} 
-        userCollection={userCollection}
-        album={album}
-      />
-    )
-  } else {
-    return (
-      <h1>Loading...</h1>
-    )
-  }
+  return (
+    <>
+      {!!album && (
+        <AlbumDetails
+          addToCollection={addToCollection}
+          userCollection={userCollection}
+          album={album}
+        />
+      )}
+      {!album && <h1>loading...</h1>}
+    </>
+  )
 }
 
 export default AlbumDetailsContainer
