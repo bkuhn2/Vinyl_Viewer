@@ -9,6 +9,7 @@ import { SavedAlbum } from "../App/App"
 interface Props {
   addToCollection: Function
   userCollection: SavedAlbum[]
+  album?: AlbumInterface
 }
 
 const AlbumDetails: FC<Props> = ({addToCollection, userCollection}) => {
@@ -17,17 +18,16 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection}) => {
   const [isSaved, setIsSaved] = useState(false)
 
   useEffect(() => {
-    getPage()
+    // getPage()
     determineSaved()
   }, [])
 
-  const getPage = async () => {
-    console.log(artistName, albumName)
-    const albumData = await fetchPage(
-      `http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=${artistName}&album=${albumName}&format=json`
-    )
-    setAlbum(albumData)
-  }
+  // const getPage = async () => {
+  //   const albumData = await fetchPage(
+  //     `http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=${artistName}&album=${albumName}&format=json`
+  //   )
+  //   setAlbum(albumData)
+  // }
 
   const determineSaved = () => {
     const isSaved = userCollection.some(album => {
