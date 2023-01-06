@@ -14,7 +14,6 @@ interface Props {
 const AlbumDetails: FC<Props> = ({addToCollection, userCollection}) => {
   const {artistName, albumName} = useParams()
   const [album, setAlbum] = useState<AlbumInterface>()
-  const [isLoading, setIsLoading] = useState(true)
   const [isSaved, setIsSaved] = useState(false)
 
   useEffect(() => {
@@ -27,7 +26,6 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection}) => {
       `http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=${artistName}&album=${albumName}&format=json`
     )
     setAlbum(albumData)
-    setIsLoading(false)
   }
 
   const determineSaved = () => {
@@ -62,8 +60,8 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection}) => {
 
   const tracks = album?.tracks.map(track => {
     return (
-      <li key={`${track.trackNum}`}>
-        <>{track.name}</>
+      <li key={track.trackNum}>
+        {track.name}
       </li>
     )
   })
@@ -79,22 +77,22 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection}) => {
 
   return (
     <>
-      {!isLoading && (
+      {!!album && (
         <>
           <span className="directory">
             <span className="directory__artist" data-cy="directory-artist">
-              {album?.artist}
+              {album.artist}
               {/* <Link /> to SearchForm with current artist as query can go here later */}
             </span>
             <span className="directory__album" data-cy="directory-album">
               {" "}
-              / {album?.name}
+              / {album.name}
             </span>
           </span>
           <section className="album-section">
             <div className="album-details">
               <h1 className="album-details__name" data-cy="album-name">
-                {album?.name}
+                {album.name}
               </h1>
               {isSaved ? (
                 previouslySavedMessage
@@ -108,7 +106,7 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection}) => {
                 </button>
               )}
               <p className="album-details__date" data-cy="album-date">
-                released on: {album?.releaseDate && getReleaseDate()}
+                released on: {album.releaseDate && getReleaseDate()}
               </p>
               <article
                 className="album-details__article"
@@ -118,7 +116,7 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection}) => {
               </article>
               <p className="album-details__last-link">
                 {"view more on "}
-                <a href={album?.lastURL} data-cy="album-link">
+                <a href={album.lastURL} data-cy="album-link">
                   Last.fm
                 </a>
               </p>
@@ -133,7 +131,7 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection}) => {
               <div className="cover__mat">
                 <img
                   className="cover__mat__img"
-                  src={album?.image}
+                  src={album.image}
                   data-cy="album-cover"
                 />
               </div>

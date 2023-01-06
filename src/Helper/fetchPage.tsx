@@ -22,7 +22,7 @@ export interface AlbumInterface {
   name: string
   artist: string
   image: string
-  tracks: [Record<string, Track>]
+  tracks: [Track]
   releaseDate: string
   article: string
   lastURL: string
