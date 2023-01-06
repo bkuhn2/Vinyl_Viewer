@@ -18,7 +18,7 @@ const AlbumCard = ({id, title, artist, releaseDate, cover}: Props) => {
         <p>{title}</p>
         <p>{artist}</p>
         <p>{releaseDate}</p>
-        <img src={cover} alt={"Album cover image of " + title}></img>
+        <img className='album-image' src={cover} alt={"Album cover image of " + title}></img>
       </div>
     )
 }

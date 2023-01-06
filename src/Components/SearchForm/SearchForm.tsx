@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import './_SearchForm.scss'
+import './_SearchForm.scss';
 import ArtistResults from '../ArtistResults/ArtistResults';
+import Carousel from '../Carousel/Carousel';
 
 
 const SearchForm = () => {
@@ -62,7 +63,9 @@ const SearchForm = () => {
 
   return (
     <div className='search-page'>
-      <h1>Explore</h1>
+      <header className='search-header'>
+        <h1>Explore</h1>
+      </header>
       <form className='search-form'>
         <input
           className='search-input' 
@@ -76,7 +79,8 @@ const SearchForm = () => {
         </Link>
       </form>
       {(searchName && !selectedArtist) && <ArtistResults searchName={searchName} results={searchResults}/>}
-      {selectedArtist && <h1>Carousel goes here</h1>}
+        {selectedArtist && 
+        <Carousel albums={ albumsByArtist } artist={ selectedArtist } />}
     </div>
   )
 }
