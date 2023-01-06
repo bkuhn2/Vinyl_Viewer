@@ -10,7 +10,7 @@ describe('Search Page Functionality', () => {
       fixture: '../fixtures/searchResults.json'
     });
 
-    //additional intercept for next fetch
+    //additional intercept for next fetches
 
     cy.visit('http://localhost:3000/search');
   })
@@ -40,6 +40,18 @@ describe('Search Page Functionality', () => {
     cy.contains('Results for "Smash Mouth"')
     cy.contains('Smash Mouth')
     cy.contains('Smash Mouth (Holiday)')
+  });
+
+  it('The search results should be links', () => {
+    cy.get('.search-input')
+    .type('Smash Mouth')
+
+    cy.get('.search-button')
+      .click()
+
+    cy.get('.artist-results-section')
+      .get('#0')
+      .should('have.attr', 'href', '/search/Smash Mouth/Smash Mouth')
   });
 
 })
