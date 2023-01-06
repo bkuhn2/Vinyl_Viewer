@@ -15,8 +15,11 @@ describe("My Collection test", () => {
     }) 
   })
   it("Should display an image with an alt tag", () => {
-    cy.get(".album-display").within(() => {
-      cy.get("album-image")
+    cy.get(".single-card").eq(0).within(() => {
+      cy.get(".album-image").should("be.visible")
+      cy.get(".album-image").should(([img]) => {
+        expect(img.alt).contains("Album cover image of Mojo")
+      })
     })
   })
 })
