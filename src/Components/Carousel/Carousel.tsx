@@ -15,17 +15,16 @@ const Carousel = ({ albums, artist }: Props) => {
 
   const displayAlbums = albums.map((album, index) => {
     return (
-      <div
+      <Link
         className="album-tile" 
         key={index} 
+        to={`/album/${formatURLString(artist)}/${formatURLString(album.name)}`}
       >
         <img
         src={album.picURL}
         />
-        <Link className={'class'} to={`/album/${formatURLString(artist)}/${formatURLString(album.name)}`}>Click</Link>
-
         <h2>{album.name}</h2>
-      </div>
+      </Link>
     ) 
   })
 
