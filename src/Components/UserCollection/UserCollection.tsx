@@ -41,7 +41,7 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
           onChange={event => setFilter(event.target.value)}
         />
         <button className='filter-button' onClick={() => filterAlbums()}>Search Artist</button>
-        <button className='filter-button' onClick={() => clearInputs()}>Clear Search Filter</button>
+        <button className='clear-filter-button' onClick={() => clearInputs()}>Clear Search Filter</button>
       </div>
       <div className='album-display'>
         {savedAlbums.length === 0 && <h2>Nothing to display, go search and save some albums!</h2>}
