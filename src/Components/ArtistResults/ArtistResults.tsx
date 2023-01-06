@@ -11,7 +11,7 @@ const ArtistResults = ({results, searchName}: Props) => {
 
   const artistsList = results.map((result, index) => {
     return (
-      <SearchResult name={result} searchName={searchName} key={index}/>
+      <SearchResult name={result} searchName={searchName} key={index} id={index}/>
     )
   })
 
