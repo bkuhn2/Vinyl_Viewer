@@ -55,7 +55,7 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
   })
 
   const previouslySavedMessage = (
-    <div className="saved-message">
+    <div className="saved-message" data-cy="saved-message">
       <p>this album is saved in your collection</p>
     </div>
   )
@@ -95,8 +95,7 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
             released on: {album.releaseDate && getReleaseDate()}
           </p>
           <article className="album-details__article" data-cy="album-article">
-            {formattedArticle}
-            {/* {formattedArticle.length < album.article.length } */}
+            {formattedArticle}{"... (cont.)"}
           </article>
           <p className="album-details__last-link">
             {"view more on "}
