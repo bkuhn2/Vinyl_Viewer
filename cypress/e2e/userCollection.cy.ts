@@ -11,7 +11,7 @@ describe("My Collection test", () => {
   it("Should have an input field and two buttons in the form", () => {
     cy.get(".form").within(() => {
       cy.get(".search-input")
-      cy.get(".filter-button").contains("Search Artist")
+      cy.get(".filter-button").contains("Search")
       cy.get(".clear-filter-button").contains("Clear Search Filter")
     }) 
   })
