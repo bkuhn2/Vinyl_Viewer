@@ -4,17 +4,8 @@ import './_SearchForm.scss';
 import ArtistResults from '../ArtistResults/ArtistResults';
 import Carousel from '../Carousel/Carousel';
 import fetchData from '../../Helper/APIcalls';
+import { FetchAlbumsDatum, FetchArtistsDatum } from '../../interfaces';
 
-
-interface FetchAlbumsDatum {
-  artist: {name: string},
-  name: string, 
-  image: [{size: string, '#text': string}, {size: string, '#text': string}, {size: string, '#text': string}, {size: string, '#text': string}]
-}
-
-interface  FetchArtistsDatum {
-  name: string
-}
 
 const SearchForm = () => {
 
