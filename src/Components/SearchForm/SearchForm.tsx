@@ -97,7 +97,7 @@ const SearchForm = () => {
         </Link>
       </form>
       {(searchName && !selectedArtist) && <ArtistResults searchName={searchName} results={searchResults}/>}
-        {selectedArtist && 
+      {selectedArtist && 
         <Carousel albums={ albumsByArtist } artist={ selectedArtist } />}
     </div>
   )
