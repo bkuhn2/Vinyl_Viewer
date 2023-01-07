@@ -24,6 +24,7 @@ const Carousel = ({ albums }: Props) => {
         <img
         className="album-image"
         src={album.picURL}
+        alt={"Album cover image of " + album.name}
         />
         <h2>{album.name}</h2>
       </Link>

@@ -27,6 +27,10 @@ describe("My Collection test", () => {
       cy.get(":nth-child(2) > a > .nav-button").click()
       cy.get(".carousel-container").should("have.length", "1")
       cy.get(".album-image").should("be.visible")
-
+      cy.get(".search-input").type("metallica").should("have.value", "metallica")
+      cy.get(".carousel-container").should("have.length", "1")
+      cy.get(".carousel-container").contains("Master of Puppets")
+      cy.get(".album-image").should("have.attr", "alt", "Album cover image of Master of Puppets")
+      cy.get(".clear-filter-button").click()
   })
 })
