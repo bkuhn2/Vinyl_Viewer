@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import './_SearchForm.scss';
 import ArtistResults from '../ArtistResults/ArtistResults';
 import Carousel from '../Carousel/Carousel';
+import fetchData from '../../Helper/APIcalls';
 
 
 interface FetchAlbumsDatum {
@@ -24,31 +25,36 @@ const SearchForm = () => {
   let selectedArtist: string = useParams().artistName!;
 
   const searchArtists = () => {
-    fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${searchName}&api_key=fcf48a134034bb684aa87d0e0309a0fd
+    fetchData(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${searchName}&api_key=fcf48a134034bb684aa87d0e0309a0fd
     &format=json`)
-      .then(response => response.json())
       .then(data => {
         const fetchedArtists = data.results.artistmatches.artist.map((datum: FetchArtistsDatum) => datum.name)
-        //clean up functions: fix '&' to replace with 'and', fetch doesn't seem to recognize '&' if it's in the name, only shows first artist
         setSearchResults(fetchedArtists);
+      })
+      .catch(error => {
+        console.log('fetch catch error (need DOM to show as well)', error);
       });
     clearSearchField();
   }
 
   const retrieveAlbums = (selectedArtist: string) => {
-    fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${selectedArtist}&api_key=fcf48a134034bb684aa87d0e0309a0fd&format=json`)
-      .then(response => response.json())
+    fetchData(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${selectedArtist}&api_key=fcf48a134034bb684aa87d0e0309a0fd&format=json`)
       .then(data => {
-        const fetchedAlbums = data.topalbums.album.map((datum: FetchAlbumsDatum) => {
-          return {
-            artist: datum.artist.name,
-            name: datum.name, 
-            picURL: datum.image[3]['#text']
-          }
-        })
-        //clean up functions: remove null/blank names; if no img url, supply a basic stock record; filter out any that are too "niche"? Only top 20?
-        //error handling - sometimes just because Last.fm gives you an artist name, doesn't mean they have any album data and will throw an error (see Smash Mouth and owl city)
-        setAlbumsByArtist(fetchedAlbums)
+        if (data.topalbums) {
+          const fetchedAlbums = data.topalbums.album.map((datum: FetchAlbumsDatum) => {
+            return {
+              artist: datum.artist.name,
+              name: datum.name, 
+              picURL: datum.image[3]['#text']
+            }
+          })
+          setAlbumsByArtist(fetchedAlbums)
+        } else if (data.error) {
+          throw new Error(data.message)
+        }
+      })
+      .catch(error => {
+        console.log('fetch catch error (need DOM to show as well)', error.message);
       })
   }
 
