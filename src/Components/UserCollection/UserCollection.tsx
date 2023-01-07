@@ -2,6 +2,8 @@ import { useState, FC } from 'react'
 import { SavedAlbum } from '../App/App'
 import Carousel from '../Carousel/Carousel'
 import './_UserCollection.scss'
+import record from '../../Images/recordplaceholder.png'
+
 
 interface Props {
   savedAlbums: SavedAlbum[]
@@ -14,7 +16,7 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
   const carouselAlbum = filteredCollection.map((album) => {
     let artist = album.artist
     let name = album.albumTitle
-    let picURL = album.coverUrl
+    let picURL = album.coverUrl || record
     return {artist: artist, name: name, picURL: picURL}
   })
 
