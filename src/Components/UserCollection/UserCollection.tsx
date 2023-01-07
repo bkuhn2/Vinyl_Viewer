@@ -12,7 +12,7 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
   const[filterCollection, setFilter] = useState('')
   const[filteredCollection, setCollection] = useState<SavedAlbum[]>(savedAlbums)
 
-  const carouselAlbum = savedAlbums.map((album) => {
+  const carouselAlbum = filteredCollection.map((album) => {
     let artist = album.artist
     let name = album.albumTitle
     let picURL = album.coverUrl
@@ -50,20 +50,8 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
         />
         <button className='filter-button' onClick={() => filterAlbums()}>Search</button>
         <button className='clear-filter-button' onClick={() => clearInputs()}>Clear Search Filter</button>
-      {/* </div> */}
-      {/* <div className='album-display'> */}
         {savedAlbums.length === 0 && <h2>Nothing to display, go search and save some albums!</h2>}
         {<Carousel albums={carouselAlbum} artist={''}/>}
-        {/* {filteredCollection.map(album => (
-          <AlbumCard 
-          key={album.id} 
-          id={album.id}
-          title={album.albumTitle}
-          artist={album.artist}
-          releaseDate={album.releaseDate}
-          cover={album.coverUrl}
-          />
-        ))} */}
       </div>
     </section> 
   )
