@@ -19,7 +19,7 @@ export interface SavedAlbum {
 
 function App() {
   const [userCollection, setUserCollection] = useState<SavedAlbum[]>([
-    ...testCollectionData,
+
   ])
 
   const addToCollection = (album: SavedAlbum): void => {

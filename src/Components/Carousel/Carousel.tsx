@@ -12,14 +12,14 @@ type Props = {
   artist: string
 }
 
-const Carousel = ({ albums, artist }: Props) => {
+const Carousel = ({ albums }: Props) => {
 
   const displayAlbums = albums.map((album, index) => {
     return (
       <Link
         className="album-tile" 
         key={index} 
-        to={`/album/${formatURLString(artist)}/${formatURLString(album.name)}`}
+        to={`/album/${formatURLString(album.artist)}/${formatURLString(album.name)}`}
       >
         <img
         className="album-image"
