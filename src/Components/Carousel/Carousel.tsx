@@ -1,7 +1,8 @@
 import React from 'react'
 import './_Carousel.scss'
-import formatURLString from '../../Helper/CleanUp'
+import { formatURLString } from '../../Helper/CleanUp'
 import { Link } from 'react-router-dom'
+
 
 type Props = {
   albums: Array<{
