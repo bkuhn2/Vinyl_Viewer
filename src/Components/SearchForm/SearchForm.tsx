@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import './_SearchForm.scss';
 import ArtistResults from '../ArtistResults/ArtistResults';
 import Carousel from '../Carousel/Carousel';
+import fetchData from '../../Helper/APIcalls';
+import { FetchAlbumsDatum, FetchArtistsDatum } from '../../interfaces';
 
 
 const SearchForm = () => {
@@ -14,29 +16,36 @@ const SearchForm = () => {
   let selectedArtist: string = useParams().artistName!;
 
   const searchArtists = () => {
-    fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${searchName}&api_key=fcf48a134034bb684aa87d0e0309a0fd
+    fetchData(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${searchName}&api_key=fcf48a134034bb684aa87d0e0309a0fd
     &format=json`)
-      .then(response => response.json())
       .then(data => {
-        setSearchResults(
-          data.results.artistmatches.artist.map((datum: {name: string}) => datum.name)
-        );
+        const fetchedArtists = data.results.artistmatches.artist.map((datum: FetchArtistsDatum) => datum.name)
+        setSearchResults(fetchedArtists);
+      })
+      .catch(error => {
+        console.log('fetch catch error (need DOM to show as well)', error);
       });
     clearSearchField();
   }
 
   const retrieveAlbums = (selectedArtist: string) => {
-    fetch(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${selectedArtist}&api_key=fcf48a134034bb684aa87d0e0309a0fd&format=json`)
-      .then(response => response.json())
+    fetchData(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${selectedArtist}&api_key=fcf48a134034bb684aa87d0e0309a0fd&format=json`)
       .then(data => {
-        setAlbumsByArtist(
-          data.topalbums.album.map((datum: 
-            {name: string, 
-            image: [{size: string, '#text': string}, {size: string, '#text': string}, {size: string, '#text': string}, {size: string, '#text': string}]}
-            ) => {
-            return {name: datum.name, picURL: datum.image[3]['#text']}
+        if (data.topalbums) {
+          const fetchedAlbums = data.topalbums.album.map((datum: FetchAlbumsDatum) => {
+            return {
+              artist: datum.artist.name,
+              name: datum.name, 
+              picURL: datum.image[3]['#text']
+            }
           })
-        )
+          setAlbumsByArtist(fetchedAlbums)
+        } else if (data.error) {
+          throw new Error(data.message)
+        }
+      })
+      .catch(error => {
+        console.log('fetch catch error (need DOM to show as well)', error.message);
       })
   }
 
@@ -79,7 +88,7 @@ const SearchForm = () => {
         </Link>
       </form>
       {(searchName && !selectedArtist) && <ArtistResults searchName={searchName} results={searchResults}/>}
-        {selectedArtist && 
+      {selectedArtist && 
         <Carousel albums={ albumsByArtist } artist={ selectedArtist } />}
     </div>
   )

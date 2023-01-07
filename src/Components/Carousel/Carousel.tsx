@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 type Props = {
   albums: Array<{
+    artist: string,
     name: string, 
     picURL: string
   }>
