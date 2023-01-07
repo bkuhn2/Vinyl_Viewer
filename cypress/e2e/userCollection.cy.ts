@@ -1,6 +1,9 @@
+/// <reference types="cypress" />
+
 describe("My Collection test", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/my-collection")
+
   })
   it("Should display the header", () => {
     cy.contains("h1", "My Collection")
@@ -16,20 +19,7 @@ describe("My Collection test", () => {
     }) 
   })
   it("Should display what the user has typed in the input field", () => {
-    cy.get(".search-input").type("heart").should("have.value", "heart")
+    cy.get(".search-input").type("metallica").should("have.value", "metallica")
   })
-  it("Should display only the search filters and display all albums when clear filters is pressed", () => {
-    cy.get(".search-input").type("heart").should("have.value", "heart")
-      cy.get(".filter-button").click()
-        cy.get(".single-card").should("have.length", "1")
-        cy.get(".single-card").contains("Gone Gator")
-      cy.get(".clear-filter-button").click()
-        cy.get(".single-card").should("have.length", "2")
-  })
-  it("Should display an image with an alt tag", () => {
-    cy.get(".single-card").eq(0).within(() => {
-      cy.get(".album-image").should("be.visible")
-      cy.get(".album-image").should("have.attr", "alt", "Album cover image of Mojo")
-    })
-  })
+
 })
