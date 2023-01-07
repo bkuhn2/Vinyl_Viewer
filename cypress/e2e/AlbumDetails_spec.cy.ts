@@ -63,8 +63,9 @@ describe("Album Details Page", () => {
       .should("have.text", "Run for Your Life")
   })
 
-  it("should display the correct album cover", () => {
+  it("should display the correct album cover and have the correct alt attribute", () => {
     cy.get('[data-cy="album-cover"]').invoke("attr", "src").should("eq", "https://lastfm.freetls.fastly.net/i/u/300x300/72ed10a859fb4c1fb29a546078ec737d.png")
+    cy.get('[data-cy="album-cover"]').invoke("attr", "alt").should("eq", "album artwork for Rubber Soul by The Beatles")
   })
 
   it("should allow a user to add the displayed album to their collection", () => {
@@ -98,8 +99,19 @@ describe("Album Details Page (missing data)", () => {
     cy.visit("http://localhost:3000/album/george+harrison/all+things+must+pass")
   })
 
-  it("should not display", () => {
-    
+  it("should not try to display a tracklist if there is no track data available", () => {
+    cy.get('[data-cy="saved-message"]').should("not.exist")
+  })
+ 
+  it("should not try to display a release date if there is no release date data available", () => {
+    cy.get('[data-cy="album-date"]').should("not.exist")
   })
 
+  it("should not try to display an album's article if there is no article data available", () => {
+    cy.get('[data-cy="album-article"]').should("not.exist")
+  })
+
+  it("should display a fallback image if there is no album image available", () => {
+    cy.get('[data-cy="album-cover"]').invoke("attr", "src").should("eq", "/static/media/fallback.36cccec721043b9b96a4.png")
+  })
 })
