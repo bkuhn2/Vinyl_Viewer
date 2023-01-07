@@ -8,7 +8,7 @@ describe("Album Details Page", () => {
         url: "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=the+beatles&album=rubber+soul&format=json",
       },
       {
-        fixture: "albumDetailRubberSoul.json",
+        fixture: "albumDetailsRubberSoul.json",
       }
     )
     cy.visit("http://localhost:3000/album/the+beatles/rubber+soul")
@@ -82,4 +82,24 @@ describe("Album Details Page", () => {
     cy.get('[data-cy="add-button"]').click()
     cy.get('[data-cy="saved-message"]').should("be.visible")
   })
+})
+
+describe("Album Details Page (missing data)", () => {
+  beforeEach(() => {
+    cy.intercept(
+      {
+        method: "GET",
+        url: "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=george+harrison&album=all+things+must+pass&format=json",
+      },
+      {
+        fixture: "albumDetailsMissingData.json",
+      }
+    )
+    cy.visit("http://localhost:3000/album/george+harrison/all+things+must+pass")
+  })
+
+  it("should not display", () => {
+    
+  })
+
 })
