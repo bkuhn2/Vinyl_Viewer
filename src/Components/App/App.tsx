@@ -6,16 +6,7 @@ import MainLayout from "../MainLayout/MainLayout"
 import SearchForm from "../SearchForm/SearchForm"
 import AlbumDetailsContainer from "../AlbumDetails/AlbumDetailsContainer"
 import UserCollection from "../UserCollection/UserCollection"
-
-import testCollectionData from "../../testCollectionData"
-
-export interface SavedAlbum {
-  id: number
-  albumTitle: string
-  artist: string
-  releaseDate: string
-  coverUrl: string
-}
+import {SavedAlbum} from "../../interfaces"
 
 function App() {
   const [userCollection, setUserCollection] = useState<SavedAlbum[]>([

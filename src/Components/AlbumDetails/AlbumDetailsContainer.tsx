@@ -2,7 +2,7 @@ import {FC, useEffect, useState} from "react"
 import {useParams} from "react-router-dom"
 
 import AlbumDetails from "./AlbumDetails"
-import {SavedAlbum} from "../App/App"
+import {SavedAlbum} from "../../interfaces"
 import {fetchPage, AlbumInterface} from "../../Helper/fetchPage"
 
 interface ContainerProps {
