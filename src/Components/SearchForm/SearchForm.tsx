@@ -4,14 +4,17 @@ import './_SearchForm.scss';
 import ArtistResults from '../ArtistResults/ArtistResults';
 import Carousel from '../Carousel/Carousel';
 import fetchData from '../../Helper/APIcalls';
-import { FetchAlbumsDatum, FetchArtistsDatum } from '../../interfaces';
+import { FetchAlbumsDatum, FetchArtistsDatum, SearchedAlbumsState } from '../../interfaces';
+import { removeEmptyAlbumName, formatSearchedAlbums } from '../../Helper/CleanUp';
+import record from '../Images/recordplaceholder.png'
+
 
 
 const SearchForm = () => {
 
   const [searchField, setSearchField] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const [albumsByArtist, setAlbumsByArtist] = useState([]);
+  const [albumsByArtist, setAlbumsByArtist] = useState<SearchedAlbumsState[]>([]);
   let searchName: string = useParams().searchName!;  
   let selectedArtist: string = useParams().artistName!;
 
@@ -32,14 +35,7 @@ const SearchForm = () => {
     fetchData(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${selectedArtist}&api_key=fcf48a134034bb684aa87d0e0309a0fd&format=json`)
       .then(data => {
         if (data.topalbums) {
-          const fetchedAlbums = data.topalbums.album.map((datum: FetchAlbumsDatum) => {
-            return {
-              artist: datum.artist.name,
-              name: datum.name, 
-              picURL: datum.image[3]['#text']
-            }
-          })
-          setAlbumsByArtist(fetchedAlbums)
+          setAlbumsByArtist(formatSearchedAlbums(data.topalbums.album))
         } else if (data.error) {
           throw new Error(data.message)
         }
