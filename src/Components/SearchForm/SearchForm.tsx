@@ -5,7 +5,7 @@ import ArtistResults from '../ArtistResults/ArtistResults';
 import Carousel from '../Carousel/Carousel';
 import fetchData from '../../Helper/APIcalls';
 import { FetchAlbumsDatum, FetchArtistsDatum, SearchedAlbumsState } from '../../interfaces';
-import { removeEmptyAlbumName, formatSearchedAlbums } from '../../Helper/CleanUp';
+import { formatSearchedAlbums, formatSearchedArtists } from '../../Helper/CleanUp';
 import record from '../Images/recordplaceholder.png'
 
 
@@ -13,7 +13,7 @@ import record from '../Images/recordplaceholder.png'
 const SearchForm = () => {
 
   const [searchField, setSearchField] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState<string[]>([]);
   const [albumsByArtist, setAlbumsByArtist] = useState<SearchedAlbumsState[]>([]);
   let searchName: string = useParams().searchName!;  
   let selectedArtist: string = useParams().artistName!;
@@ -21,9 +21,8 @@ const SearchForm = () => {
   const searchArtists = () => {
     fetchData(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${searchName}&api_key=fcf48a134034bb684aa87d0e0309a0fd
     &format=json`)
-      .then(data => {
-        const fetchedArtists = data.results.artistmatches.artist.map((datum: FetchArtistsDatum) => datum.name)
-        setSearchResults(fetchedArtists);
+      .then(data => {        
+        setSearchResults(formatSearchedArtists(data.results.artistmatches.artist));
       })
       .catch(error => {
         console.log('fetch catch error (need DOM to show as well)', error);
