@@ -2,7 +2,6 @@ import React from 'react'
 import './_Carousel.scss'
 import { formatURLString } from '../../Helper/CleanUp'
 import { Link } from 'react-router-dom'
-import record from '../Images/recordplaceholder.png'
 
 
 type Props = {

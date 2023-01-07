@@ -6,7 +6,6 @@ import Carousel from '../Carousel/Carousel';
 import fetchData from '../../Helper/APIcalls';
 import { FetchAlbumsDatum, FetchArtistsDatum, SearchedAlbumsState } from '../../interfaces';
 import { formatSearchedAlbums, formatSearchedArtists } from '../../Helper/CleanUp';
-import record from '../Images/recordplaceholder.png'
 
 
 
