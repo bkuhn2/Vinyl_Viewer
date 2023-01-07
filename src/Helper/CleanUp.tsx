@@ -8,14 +8,14 @@ const formatURLString = (item: string) => {
   }
 
 const formatSearchedArtists = (artistsData: FetchArtistsDatum[]) => {
-  return replaceAmp(artistsData.map(datum => datum.name)).filter(name => !(name.includes('/') || name.includes('?')))
+  return replaceAmpersand(artistsData.map(datum => datum.name)).filter(name => !(name.includes('/') || name.includes('?')))
 }
 
-const replaceAmp = (rawData: string[]) => {
+const replaceAmpersand = (rawData: string[]) => {
   const replacedArtists = rawData.map(name => {
      if (name.includes('&')) {
       const splitName = name.split('');
-      
+
       const indices = splitName.reduce((indexNums: number[], character, currentIndex) => {
         if (character === '&') {
           indexNums.push(currentIndex)
@@ -25,7 +25,7 @@ const replaceAmp = (rawData: string[]) => {
 
       indices.forEach(position => {
         splitName.splice(position, 1, 'and')
-      })
+      });
       
       return splitName.join('');
     } else {
@@ -39,7 +39,7 @@ const replaceAmp = (rawData: string[]) => {
     if (!cleanedArtists.includes(artist)) {
       cleanedArtists.push(artist)
     };
-  })
+  });
 
   return cleanedArtists;
 }
