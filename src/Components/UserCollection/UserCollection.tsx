@@ -1,5 +1,4 @@
 import { useState, FC } from 'react'
-import AlbumCard from '../AlbumCard/AlbumCard'
 import { SavedAlbum } from '../App/App'
 import Carousel from '../Carousel/Carousel'
 import './_UserCollection.scss'
