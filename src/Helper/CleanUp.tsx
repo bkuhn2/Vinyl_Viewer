@@ -1,4 +1,4 @@
-import { FetchAlbumsDatum, SearchedAlbumsState } from "../interfaces"
+import { FetchAlbumsDatum, FetchArtistsDatum, SearchedAlbumsState } from "../interfaces"
 import record from '../Images/recordplaceholder.png'
 
 const formatURLString = (item: string) => {
@@ -7,10 +7,46 @@ const formatURLString = (item: string) => {
       .replace(/\//g, "+")
   }
 
-const formatSearchedAlbums = (albumsData: FetchAlbumsDatum[]) => {
+const formatSearchedArtists = (artistsData: FetchArtistsDatum[]) => {
+  return replaceAmp(artistsData.map(datum => datum.name)).filter(name => !(name.includes('/') || name.includes('?')))
+}
 
-  return removeEmptyAlbumName(albumsData).map((datum: FetchAlbumsDatum) => {
-    if (datum.image[3]['#text'] === '') {
+const replaceAmp = (rawData: string[]) => {
+  const replacedArtists = rawData.map(name => {
+     if (name.includes('&')) {
+      const splitName = name.split('');
+      
+      const indices = splitName.reduce((indexNums: number[], character, currentIndex) => {
+        if (character === '&') {
+          indexNums.push(currentIndex)
+        }
+        return indexNums
+      }, []);
+
+      indices.forEach(position => {
+        splitName.splice(position, 1, 'and')
+      })
+      
+      return splitName.join('');
+    } else {
+      return name;
+    };
+  });
+
+  const cleanedArtists: string[] = [];
+
+  replacedArtists.forEach(artist => {
+    if (!cleanedArtists.includes(artist)) {
+      cleanedArtists.push(artist)
+    };
+  })
+
+  return cleanedArtists;
+}
+
+const formatSearchedAlbums = (albumsData: FetchAlbumsDatum[]) => {
+  return removeEmptyAlbumName(albumsData).map((datum) => {
+    if (!datum.image[3]['#text']) {
       return {
         artist: datum.artist.name,
         name: datum.name, 
@@ -26,13 +62,10 @@ const formatSearchedAlbums = (albumsData: FetchAlbumsDatum[]) => {
   })
 }
 
-
 const removeEmptyAlbumName = (rawAlbums: FetchAlbumsDatum[]) => {
   return rawAlbums.filter(album => {
-    console.log(album.name);
-    
-    return !(album.name === "null" || album.name === "(null)" || album.name === "" || album.name === null)
+    return !(album.name === "null" || album.name === "(null)" || album.name === "" || album.name === null || album.name.toLowerCase() === 'no title')
   })
 }
   
-  export { formatURLString,  formatSearchedAlbums, removeEmptyAlbumName }
+  export { formatURLString,  formatSearchedAlbums, removeEmptyAlbumName, formatSearchedArtists }
