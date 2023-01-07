@@ -17,8 +17,8 @@ const ArtistResults = ({results, searchName}: Props) => {
 
   return (
     <section className='artist-results-section'>
-      <h2>Results for "{searchName}"</h2>
-      <div>
+      <h2 className='results-heading'>Results for "{searchName}"</h2>
+      <div className='results-container'>
         {artistsList}
       </div>
     </section>
