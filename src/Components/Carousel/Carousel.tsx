@@ -4,26 +4,28 @@ import { formatURLString } from '../../Helper/CleanUp'
 import { Link } from 'react-router-dom'
 
 
-type Props = {
+interface carouselTileData  {
     album: {
       artist: string,
       name: string, 
-      picURL: string
+      picURL: string  
     },
-    children: JSX.Element,
-    width: string,
-    index: number
+    width?: string
 }
 
-export const CarouselItem = ({ children, width, album, index }: Props) => {
+interface carouselData {
+  children?: JSX.Element,
+  albumIndex?: number
+}
+
+export const CarouselTile = ({ album, width }: carouselTileData) => {
+  console.log(width)
   return (
     <Link
       className="album-tile"
-      key={index}
       to={`/album/${formatURLString(album.artist)}/${formatURLString(album.name)}`}
       style={{ width: width}}
     >
-      {children}
       <img
         className="album-image"
         src={album.picURL}

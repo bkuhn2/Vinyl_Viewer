@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './_SearchForm.scss';
 import ArtistResults from '../ArtistResults/ArtistResults';
-import Carousel, { CarouselItem } from '../Carousel/Carousel';
+import Carousel, { CarouselTile } from '../Carousel/Carousel';
 import fetchData from '../../Helper/APIcalls';
 import SearchError from '../SearchError/SearchError';
 import { FetchAlbumsDatum, FetchArtistsDatum, SearchedAlbumsState } from '../../interfaces';
@@ -121,7 +121,7 @@ const SearchForm = () => {
         <Carousel>
           {albumsByArtist.map((album, index) => {
             return (
-              <CarouselItem album={album} index={index}></CarouselItem>
+              <CarouselTile album={album} key={index} ></CarouselTile>
             )
         })}</Carousel>
       }
