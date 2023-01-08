@@ -4,6 +4,7 @@ import './_SearchForm.scss';
 import ArtistResults from '../ArtistResults/ArtistResults';
 import Carousel from '../Carousel/Carousel';
 import fetchData from '../../Helper/APIcalls';
+import SearchError from '../SearchError/SearchError';
 import { FetchAlbumsDatum, FetchArtistsDatum, SearchedAlbumsState } from '../../interfaces';
 import { formatSearchedAlbums, formatSearchedArtists } from '../../Helper/CleanUp';
 
@@ -115,19 +116,11 @@ const SearchForm = () => {
         </Link>
       </form>
       {(searchName && !selectedArtist && !artistSearchError) && <ArtistResults searchName={searchName} results={searchResults}/>}
-      {artistSearchError && 
-        <div className='search-error-area'>
-          <h3 className='search-error-message'>{artistSearchError}</h3>
-        </div>
-      }
+      {artistSearchError && <SearchError errorMessage={artistSearchError}/>}
       {(selectedArtist && !albumsSearchError && !artistSearchError) && 
         <Carousel albums={ albumsByArtist } artist={ selectedArtist } />
       }
-      {(albumsSearchError && !artistSearchError)&& 
-        <div className='search-error-area'>
-          <h3 className='search-error-message'>{albumsSearchError}</h3>
-        </div>
-      }
+      {(albumsSearchError && !artistSearchError) && <SearchError errorMessage={albumsSearchError}/>}
     </div>
   )
 }
