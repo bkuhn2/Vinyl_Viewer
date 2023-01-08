@@ -121,7 +121,7 @@ const SearchForm = () => {
         <Carousel>
           {albumsByArtist.map((album, index) => {
             return (
-              <CarouselItem item={album} index={index}></CarouselItem>
+              <CarouselItem album={album} index={index}></CarouselItem>
             )
         })}</Carousel>
       }
