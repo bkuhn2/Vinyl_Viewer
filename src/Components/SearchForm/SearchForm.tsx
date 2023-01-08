@@ -14,6 +14,8 @@ const SearchForm = () => {
   const [searchField, setSearchField] = useState('');
   const [searchResults, setSearchResults] = useState<string[]>([]);
   const [albumsByArtist, setAlbumsByArtist] = useState<SearchedAlbumsState[]>([]);
+  const [artistSearchError, setArtistSearchError] = useState<string>('');
+
   let searchName: string = useParams().searchName!;  
   let selectedArtist: string = useParams().artistName!;
 
@@ -21,10 +23,24 @@ const SearchForm = () => {
     fetchData(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${searchName}&api_key=fcf48a134034bb684aa87d0e0309a0fd
     &format=json`)
       .then(data => {        
-        setSearchResults(formatSearchedArtists(data.results.artistmatches.artist));
+        if (data.results.artistmatches.artist.length === 0) {
+          setArtistSearchError(`Looks like we don't have any artists matching that name...`);
+          setSearchResults([]);
+        } else {
+          setSearchResults(formatSearchedArtists(data.results.artistmatches.artist));
+        }
       })
       .catch(error => {
-        console.log('fetch catch error (need DOM to show as well)', error);
+        if (error.message.includes('Cannot read properties of undefined')) {
+          setArtistSearchError(`Unable to read the name you typed, please enter a validly formatted name`);
+          setSearchResults([]);
+        } else if (error.message === 'bad response') {
+          setArtistSearchError('Uh oh, looks like something went wrong in the back, please try again later');
+          setSearchResults([]);
+        } else {
+          setArtistSearchError('Error: please contact site administrator');
+          setSearchResults([]);
+        }
       });
     clearSearchField();
   }
@@ -49,9 +65,11 @@ const SearchForm = () => {
 
   useEffect(() => {
     if (searchName) {
+      setArtistSearchError('')
       searchArtists()
-    } {
-      setSearchResults([])
+    } else {
+      setArtistSearchError('')
+      setSearchResults([]);
     }
   }, [searchName])
 
@@ -84,6 +102,7 @@ const SearchForm = () => {
       {(searchName && !selectedArtist) && <ArtistResults searchName={searchName} results={searchResults}/>}
       {selectedArtist && 
         <Carousel albums={ albumsByArtist } artist={ selectedArtist } />}
+        {/* these conditionals - add it so that there's no error message here as a prior condition with others */}
     </div>
   )
 }
