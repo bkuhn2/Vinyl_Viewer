@@ -8,7 +8,7 @@ describe("Album Details Page", () => {
         url: "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=the+beatles&album=rubber+soul&format=json",
       },
       {
-        fixture: "albumDetailRubberSoul.json",
+        fixture: "albumDetailsRubberSoul.json",
       }
     )
     cy.visit("http://localhost:3000/album/the+beatles/rubber+soul")
@@ -63,8 +63,9 @@ describe("Album Details Page", () => {
       .should("have.text", "Run for Your Life")
   })
 
-  it("should display the correct album cover", () => {
+  it("should display the correct album cover and have the correct alt attribute", () => {
     cy.get('[data-cy="album-cover"]').invoke("attr", "src").should("eq", "https://lastfm.freetls.fastly.net/i/u/300x300/72ed10a859fb4c1fb29a546078ec737d.png")
+    cy.get('[data-cy="album-cover"]').invoke("attr", "alt").should("eq", "album artwork for Rubber Soul by The Beatles")
   })
 
   it("should allow a user to add the displayed album to their collection", () => {
@@ -81,5 +82,36 @@ describe("Album Details Page", () => {
     cy.get('[data-cy="saved-message"]').should("not.exist")
     cy.get('[data-cy="add-button"]').click()
     cy.get('[data-cy="saved-message"]').should("be.visible")
+  })
+})
+
+describe("Album Details Page (missing data)", () => {
+  beforeEach(() => {
+    cy.intercept(
+      {
+        method: "GET",
+        url: "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=george+harrison&album=all+things+must+pass&format=json",
+      },
+      {
+        fixture: "albumDetailsMissingData.json",
+      }
+    )
+    cy.visit("http://localhost:3000/album/george+harrison/all+things+must+pass")
+  })
+
+  it("should not try to display a tracklist if there is no track data available", () => {
+    cy.get('[data-cy="saved-message"]').should("not.exist")
+  })
+ 
+  it("should not try to display a release date if there is no release date data available", () => {
+    cy.get('[data-cy="album-date"]').should("not.exist")
+  })
+
+  it("should not try to display an album's article if there is no article data available", () => {
+    cy.get('[data-cy="album-article"]').should("not.exist")
+  })
+
+  it("should display a fallback image if there is no album image available", () => {
+    cy.get('[data-cy="album-cover"]').invoke("attr", "src").should("eq", "/static/media/fallback.36cccec721043b9b96a4.png")
   })
 })
