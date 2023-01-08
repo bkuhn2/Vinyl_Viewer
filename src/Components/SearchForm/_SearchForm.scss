@@ -67,3 +67,17 @@
   overflow-y: hidden;
   white-space: nowrap;
 }
+
+.search-error-area {
+  margin-top: 6em;
+  background-color: rgba(0, 0, 0, 0.558);
+  padding-left: 2em;
+  padding-right: 2em;
+
+}
+
+.search-error-message {
+  color: rgba(222, 64, 80, 0.829);
+  text-shadow: 3px 2px 2px #000000d8;
+  font-size: 2em;
+}
