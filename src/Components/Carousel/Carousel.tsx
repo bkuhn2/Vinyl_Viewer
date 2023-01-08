@@ -1,4 +1,3 @@
-import {useState} from 'react'
 import './_Carousel.scss'
 import formatURLString from '../../Helper/CleanUp'
 import { Link } from 'react-router-dom'
@@ -14,16 +13,6 @@ type Props = {
 }
 
 const Carousel = ({ albums, deleteAlbum }: Props) => {
-  // const[isLoading, setLoading] = useState(false)
-
-  // const deleteAlbum = (deleteName: string) => {
-  //   let index = albums.findIndex(album => {
-  //     return album.name === deleteName
-  //   })
-  //   setLoading(true)
-  //   albums.splice(index, 1)
-  // }
-
 
   const displayAlbums = albums.map((album, index) => {
     return (

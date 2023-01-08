@@ -11,26 +11,9 @@ interface Props {
 
 const UserCollection: FC<Props> = ({ savedAlbums, deleteAlbum }) => {
   const[filterCollection, setFilter] = useState('')
-  const[filteredCollection, setCollection] = useState<SavedAlbum[]>(savedAlbums)
 
-  const filterAlbums = () => {
-    if(filterCollection === ''){
-      return filteredCollection
-    } else {
-      let myAlbums = savedAlbums.filter(album => {
-      return album.artist.toLowerCase().includes(filterCollection.toLowerCase()) || album.name.toLowerCase().includes(filterCollection.toLowerCase())
-      })  
-      return setCollection(myAlbums)
-    }
-  }
-
-  const clearInputs = () => {
-    setFilter('')
-    setCollection(savedAlbums)
-  }
+  const filteredCollection = !!filterCollection ? savedAlbums.filter(album => album.artist.toLowerCase().includes(filterCollection.toLowerCase()) || album.name.toLowerCase().includes(filterCollection.toLowerCase())) : savedAlbums
   
-
-
   return (
     <section className='my-collection'>
       <header className='collection-header'>
@@ -44,10 +27,8 @@ const UserCollection: FC<Props> = ({ savedAlbums, deleteAlbum }) => {
           value={filterCollection} 
           onChange={event => setFilter(event.target.value)}
         />
-        <button className='filter-button' onClick={() => filterAlbums()}>Search</button>
-        <button className='clear-filter-button' onClick={() => clearInputs()}>Clear Search Filter</button>
         {savedAlbums.length === 0 && <h2>Nothing to display, go search and save some albums!</h2>}
-        <Carousel albums={savedAlbums} artist={''} deleteAlbum={deleteAlbum}/>
+        <Carousel albums={filteredCollection} artist={''} deleteAlbum={deleteAlbum}/>
       </div>
     </section> 
   )
