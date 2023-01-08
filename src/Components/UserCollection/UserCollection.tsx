@@ -49,8 +49,8 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
           value={filterCollection} 
           onChange={event => setFilter(event.target.value)}
         />
-        <button className='filter-button' onClick={() => filterAlbums()}>Search</button>
-        <button className='clear-filter-button' onClick={() => clearInputs()}>Clear Search Filter</button>
+        {/* <button className='filter-button' onClick={() => filterAlbums()}>Search</button>
+        <button className='clear-filter-button' onClick={() => clearInputs()}>Clear Search Filter</button> */}
         {savedAlbums.length === 0 && <h2>Nothing to display, go search and save some albums!</h2>}
         {<Carousel albums={carouselAlbum} artist={''}/>}
       </div>
