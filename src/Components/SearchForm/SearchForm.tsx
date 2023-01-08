@@ -95,3 +95,4 @@ const SearchForm = () => {
 }
 
 export default SearchForm
+// deleteAlbum={() => {}}

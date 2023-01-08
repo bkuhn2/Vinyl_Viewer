@@ -13,6 +13,13 @@ function App() {
 
   ])
 
+  const deleteAlbum = (deleteName: string) => {
+    let newArray = userCollection.filter(album => {
+      return album.name !== deleteName
+    })
+    setUserCollection(newArray)
+  }
+
   const addToCollection = (album: SavedAlbum): void => {
     setUserCollection(collection => [...collection, album])
   }
@@ -37,7 +44,7 @@ function App() {
         />
         <Route
           path="/my-collection"
-          element={<UserCollection savedAlbums={userCollection} />}
+          element={<UserCollection savedAlbums={userCollection} deleteAlbum={deleteAlbum}/>}
         />
       </Route>
     </Routes>
