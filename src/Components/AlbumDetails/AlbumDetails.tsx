@@ -6,6 +6,8 @@ import {AlbumInterface} from "../../Helper/fetchPage"
 import formatReleaseDate from "../../Helper/formatReleaseDate"
 import {SavedAlbum} from "../../interfaces"
 
+import fallback from "../../assets/fallback.png"
+
 interface Props {
   addToCollection: Function
   userCollection: SavedAlbum[]
@@ -113,7 +115,8 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
           <div className="cover__mat">
             <img
               className="cover__mat__img"
-              src={album.image}
+              src={!!album.image ? album.image : fallback}
+              alt={`album artwork for ${album.name} by ${album.artist}`}
               data-cy="album-cover"
             />
           </div>

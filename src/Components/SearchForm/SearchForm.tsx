@@ -4,23 +4,24 @@ import './_SearchForm.scss';
 import ArtistResults from '../ArtistResults/ArtistResults';
 import Carousel from '../Carousel/Carousel';
 import fetchData from '../../Helper/APIcalls';
-import { FetchAlbumsDatum, FetchArtistsDatum } from '../../interfaces';
+import { FetchAlbumsDatum, FetchArtistsDatum, SearchedAlbumsState } from '../../interfaces';
+import { formatSearchedAlbums, formatSearchedArtists } from '../../Helper/CleanUp';
+
 
 
 const SearchForm = () => {
 
   const [searchField, setSearchField] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  const [albumsByArtist, setAlbumsByArtist] = useState([]);
+  const [searchResults, setSearchResults] = useState<string[]>([]);
+  const [albumsByArtist, setAlbumsByArtist] = useState<SearchedAlbumsState[]>([]);
   let searchName: string = useParams().searchName!;  
   let selectedArtist: string = useParams().artistName!;
 
   const searchArtists = () => {
     fetchData(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${searchName}&api_key=fcf48a134034bb684aa87d0e0309a0fd
     &format=json`)
-      .then(data => {
-        const fetchedArtists = data.results.artistmatches.artist.map((datum: FetchArtistsDatum) => datum.name)
-        setSearchResults(fetchedArtists);
+      .then(data => {        
+        setSearchResults(formatSearchedArtists(data.results.artistmatches.artist));
       })
       .catch(error => {
         console.log('fetch catch error (need DOM to show as well)', error);
@@ -32,14 +33,7 @@ const SearchForm = () => {
     fetchData(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${selectedArtist}&api_key=fcf48a134034bb684aa87d0e0309a0fd&format=json`)
       .then(data => {
         if (data.topalbums) {
-          const fetchedAlbums = data.topalbums.album.map((datum: FetchAlbumsDatum) => {
-            return {
-              artist: datum.artist.name,
-              name: datum.name, 
-              picURL: datum.image[3]['#text']
-            }
-          })
-          setAlbumsByArtist(fetchedAlbums)
+          setAlbumsByArtist(formatSearchedAlbums(data.topalbums.album))
         } else if (data.error) {
           throw new Error(data.message)
         }
@@ -73,7 +67,7 @@ const SearchForm = () => {
   return (
     <div className='search-page'>
       <header className='search-header'>
-        <h1>Explore</h1>
+        <h1 className='search-header-title'>Explore</h1>
       </header>
       <form className='search-form'>
         <input

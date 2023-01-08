@@ -2,6 +2,8 @@ import { useState, FC } from 'react'
 import {SavedAlbum} from "../../interfaces"
 import Carousel from '../Carousel/Carousel'
 import './_UserCollection.scss'
+import record from '../../Images/recordplaceholder.png'
+
 
 interface Props {
   savedAlbums: SavedAlbum[]
@@ -12,7 +14,9 @@ interface Props {
 const UserCollection: FC<Props> = ({ savedAlbums, deleteAlbum }) => {
   const[filterCollection, setFilter] = useState('')
 
+
   const filteredCollection = !!filterCollection ? savedAlbums.filter(album => album.artist.toLowerCase().includes(filterCollection.toLowerCase()) || album.name.toLowerCase().includes(filterCollection.toLowerCase())) : savedAlbums
+
   
   return (
     <section className='my-collection'>
