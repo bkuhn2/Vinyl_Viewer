@@ -1,6 +1,6 @@
 import { useState, FC } from 'react'
 import { SavedAlbum } from '../App/App'
-import Carousel from '../Carousel/Carousel'
+import Carousel, {CarouselTile} from '../Carousel/Carousel'
 import './_UserCollection.scss'
 import record from '../../Images/recordplaceholder.png'
 
@@ -52,7 +52,12 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
         <button className='filter-button' onClick={() => filterAlbums()}>Search</button>
         <button className='clear-filter-button' onClick={() => clearInputs()}>Clear Search Filter</button>
         {savedAlbums.length === 0 && <h2>Nothing to display, go search and save some albums!</h2>}
-        {<Carousel albums={carouselAlbum} artist={''}/>}
+        {<Carousel>
+          {carouselAlbum.map((album, index) => {
+            return (
+              <CarouselTile album={album} key={index} ></CarouselTile>
+            )
+        })}</Carousel>}
       </div>
     </section> 
   )

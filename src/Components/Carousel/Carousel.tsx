@@ -35,9 +35,9 @@ export const CarouselTile = ({ album, children, width }: carouselTileData) => {
   )
 }
 
-const Carousel = ( {children} : carouselData) => {
+const Carousel = ({ children }) => {
   const [activeAlbum, newActiveAlbum] = useState(0)
-
+  console.log(children)
   const updateAlbum = ( albumIndex: number ) => {
     console.log(albumIndex)
       if (albumIndex < 0) {
@@ -55,6 +55,7 @@ const Carousel = ( {children} : carouselData) => {
       <div className="carousel">
           <div className="inner" style={{ transform: `translateX(-${activeAlbum * 100}%)` }}>
               {React.Children.map(children, (child) => {
+                console.log(child) 
                   return React.cloneElement(child, {width: "100%" })
               })}
           </div>
