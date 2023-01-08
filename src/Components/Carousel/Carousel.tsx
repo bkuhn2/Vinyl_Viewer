@@ -10,22 +10,22 @@ interface carouselTileData  {
       name: string, 
       picURL: string  
     },
+    children?: React.ReactNode,
     width?: string
 }
 
 interface carouselData {
-  children?: JSX.Element,
-  albumIndex?: number
+  children: React.ReactNode
 }
 
-export const CarouselTile = ({ album, width }: carouselTileData) => {
-  console.log(width)
+export const CarouselTile = ({ album, children, width }: carouselTileData) => {
   return (
     <Link
       className="album-tile"
       to={`/album/${formatURLString(album.artist)}/${formatURLString(album.name)}`}
       style={{ width: width}}
     >
+      {children}
       <img
         className="album-image"
         src={album.picURL}
@@ -35,9 +35,11 @@ export const CarouselTile = ({ album, width }: carouselTileData) => {
   )
 }
 
-const Carousel = ({ children }) => {
+const Carousel = ( {children} : carouselData) => {
   const [activeAlbum, newActiveAlbum] = useState(0)
-  const updateAlbum = (albumIndex) => {
+
+  const updateAlbum = ( albumIndex: number ) => {
+    console.log(albumIndex)
       if (albumIndex < 0) {
           albumIndex = React.Children.count(children) - 1
       } 
