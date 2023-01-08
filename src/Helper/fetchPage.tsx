@@ -1,3 +1,5 @@
+import { AlbumInterface } from "../interfaces"
+
 export const fetchPage = async (url: string): Promise<AlbumInterface> => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -29,24 +31,6 @@ export const fetchPage = async (url: string): Promise<AlbumInterface> => {
       reject(error)
     }
   })
-}
-
-export interface AlbumInterface {
-  name: string
-  artist: string
-  image: string
-  tracks: [Track]
-  releaseDate: string
-  article: string
-  lastURL: string
-}
-
-export interface Track {
-  name: string
-  duration: number
-  trackNum: number
-  artist: string
-  album: string
 }
 
 interface FetchedTrack {

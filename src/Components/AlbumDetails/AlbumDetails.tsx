@@ -2,7 +2,7 @@ import {FC, useEffect, useState} from "react"
 import {useParams, Link} from "react-router-dom"
 
 import "./_AlbumDetails.scss"
-import {AlbumInterface} from "../../Helper/fetchPage"
+import {AlbumInterface} from "../../interfaces"
 import formatReleaseDate from "../../Helper/formatReleaseDate"
 import {SavedAlbum} from "../App/App"
 
