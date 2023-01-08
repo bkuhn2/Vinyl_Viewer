@@ -6,11 +6,19 @@ const Home = () => {
   return (
       <div className="split-screen">
         <h1 className="split-screen__title">Vinyl Viewer</h1>
-        <Link className="artist-search split" to={`/search`}>
+        <Link 
+          className="artist-search split" 
+          to={`/search`}
+          tabIndex={0}
+          >
             <h2>Search Artists</h2>
         </Link>
 
-        <Link className="user-collection split" to={`/my-collection`}>
+        <Link 
+          className="user-collection split" 
+          to={`/my-collection`}
+          tabIndex={0}
+          >
             <h2>My Collection</h2>
         </Link>
       </div>
