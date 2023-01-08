@@ -1,8 +1,25 @@
 @use '../../Utilities/mixins';
 @use '../../Utilities/variables';
 
-.search-result {
+
+.search-result-container {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  width: 27em;
+  background: url(/Images/whitetape.png);  
+  background-size: cover;
   text-align: center;
-  background-color: aqua;
-  
+  margin-bottom: 1.5em;
+  padding-left: 2.7em;
+  padding-right: 2em;
+  text-decoration: none;
+}
+
+.search-result {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.3em;
+  font-weight: 200;
+  color: rgba(0, 0, 0, 0.729);
 }

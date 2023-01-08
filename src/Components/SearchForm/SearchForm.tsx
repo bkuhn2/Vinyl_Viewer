@@ -67,7 +67,7 @@ const SearchForm = () => {
   return (
     <div className='search-page'>
       <header className='search-header'>
-        <h1>Explore</h1>
+        <h1 className='search-header-title'>Explore</h1>
       </header>
       <form className='search-form'>
         <input

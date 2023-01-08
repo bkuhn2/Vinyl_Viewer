@@ -13,7 +13,7 @@ const SearchResult = ({name, searchName, id}: Props) => {
 
 
   return (
-    <Link to={`/search/${searchName}/${name}`} id={`${id}`}>
+    <Link to={`/search/${searchName}/${name}`} id={`${id}`} className='search-result-container'>
       <p className='search-result'>{name}</p>
     </Link>
   )
