@@ -9,10 +9,11 @@ type Props = {
     name: string, 
     picURL: string
   }>
-  artist: string
+  artist: string,
+  deleteAlbum: (deleteName: string) => void
 }
 
-const Carousel = ({ albums }: Props) => {
+const Carousel = ({ albums, deleteAlbum }: Props) => {
 
   const displayAlbums = albums.map((album, index) => {
     return (
@@ -26,6 +27,7 @@ const Carousel = ({ albums }: Props) => {
         src={album.picURL}
         />
         <h2>{album.name}</h2>
+        {"localhost:3000/my-collection" && <Link to={''}> <button onClick={() => deleteAlbum(album.name)} className='delete-album'>Delete</button></Link>}
       </Link>
     ) 
   })

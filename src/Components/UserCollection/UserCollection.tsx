@@ -1,4 +1,5 @@
-import { useState, FC } from 'react'
+import { useState, FC, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import {SavedAlbum} from "../../interfaces"
 import Carousel from '../Carousel/Carousel'
 import './_UserCollection.scss'
@@ -6,10 +7,20 @@ import './_UserCollection.scss'
 interface Props {
   savedAlbums: SavedAlbum[]
 }
+ 
 
 const UserCollection: FC<Props> = ({ savedAlbums }) => {
   const[filterCollection, setFilter] = useState('')
   const[filteredCollection, setCollection] = useState<SavedAlbum[]>(savedAlbums)
+  
+
+  const deleteAlbum = (deleteName: string) => {
+      let newSaved = savedAlbums.filter(album => {
+        return album.name !== deleteName
+      })
+      console.log(newSaved);
+     return setCollection(newSaved)
+  }
 
   const filterAlbums = () => {
     if(filterCollection === ''){
@@ -43,7 +54,7 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
         <button className='filter-button' onClick={() => filterAlbums()}>Search</button>
         <button className='clear-filter-button' onClick={() => clearInputs()}>Clear Search Filter</button>
         {savedAlbums.length === 0 && <h2>Nothing to display, go search and save some albums!</h2>}
-        {<Carousel albums={filteredCollection} artist={''}/>}
+        {<Carousel albums={filteredCollection} artist={''} deleteAlbum={deleteAlbum}/>}
       </div>
     </section> 
   )

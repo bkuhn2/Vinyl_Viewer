@@ -89,7 +89,7 @@ const SearchForm = () => {
       </form>
       {(searchName && !selectedArtist) && <ArtistResults searchName={searchName} results={searchResults}/>}
       {selectedArtist && 
-        <Carousel albums={ albumsByArtist } artist={ selectedArtist } />}
+        <Carousel albums={ albumsByArtist } artist={ selectedArtist } deleteAlbum={() => {}}/>}
     </div>
   )
 }
