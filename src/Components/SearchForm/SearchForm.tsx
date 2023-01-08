@@ -32,13 +32,13 @@ const SearchForm = () => {
       })
       .catch(error => {
         if (error.message.includes('Cannot read properties of undefined')) {
-          setArtistSearchError(`Unable to read the name you typed, please enter a validly formatted name`);
+          setArtistSearchError(`Unable to read the name you typed, please enter a validly formatted name.`);
           setSearchResults([]);
         } else if (error.message === 'bad response') {
-          setArtistSearchError('Uh oh, looks like something went wrong in the back, please try again later');
+          setArtistSearchError('Uh oh, looks like something went wrong in the back, please try again later.');
           setSearchResults([]);
         } else {
-          setArtistSearchError('Error: please contact site administrator');
+          setArtistSearchError('Error: please contact site administrator.');
           setSearchResults([]);
         }
       });
@@ -99,9 +99,15 @@ const SearchForm = () => {
           <button className='search-button'>Search</button>
         </Link>
       </form>
-      {(searchName && !selectedArtist) && <ArtistResults searchName={searchName} results={searchResults}/>}
+      {(searchName && !selectedArtist && !artistSearchError) && <ArtistResults searchName={searchName} results={searchResults}/>}
+      {artistSearchError && 
+        <div className='search-error-area'>
+          <h3 className='search-error-message'>{artistSearchError}</h3>
+        </div>
+      }
       {selectedArtist && 
-        <Carousel albums={ albumsByArtist } artist={ selectedArtist } />}
+        <Carousel albums={ albumsByArtist } artist={ selectedArtist } />
+      }
         {/* these conditionals - add it so that there's no error message here as a prior condition with others */}
     </div>
   )
