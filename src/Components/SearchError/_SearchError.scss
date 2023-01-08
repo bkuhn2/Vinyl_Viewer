@@ -1,0 +1,16 @@
+@use '../../Utilities/mixins';
+@use '../../Utilities/variables';
+
+.search-error-area {
+  margin-top: 6em;
+  background-color: rgba(25, 25, 25, 0.756);
+  padding-left: 2em;
+  padding-right: 2em;
+  border-radius: 3em;
+}
+
+.search-error-message {
+  color: rgba(222, 64, 80, 0.829);
+  text-shadow: 3px 2px 2px #000000d8;
+  font-size: 2em;
+}
