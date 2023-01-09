@@ -8,8 +8,6 @@ import SearchError from '../SearchError/SearchError';
 import { FetchAlbumsDatum, FetchArtistsDatum, SearchedAlbumsState } from '../../interfaces';
 import { formatSearchedAlbums, formatSearchedArtists } from '../../Helper/CleanUp';
 
-
-
 const SearchForm = () => {
 
   const [searchField, setSearchField] = useState('');
@@ -118,7 +116,7 @@ const SearchForm = () => {
       {(searchName && !selectedArtist && !artistSearchError) && <ArtistResults searchName={searchName} results={searchResults}/>}
       {artistSearchError && <SearchError errorMessage={artistSearchError}/>}
       {(selectedArtist && !albumsSearchError && !artistSearchError) && 
-        <Carousel albums={ albumsByArtist } artist={ selectedArtist } />
+        <Carousel albums={ albumsByArtist } artist={ selectedArtist } deleteAlbum={() => {}} />
       }
       {(albumsSearchError && !artistSearchError) && <SearchError errorMessage={albumsSearchError}/>}
     </div>
@@ -126,4 +124,3 @@ const SearchForm = () => {
 }
 
 export default SearchForm
-// deleteAlbum={() => {}}
