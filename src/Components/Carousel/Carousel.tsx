@@ -51,15 +51,16 @@ const Carousel = ({ children }: carouselData) => {
   }
   return (
     <div className="carousel-container">
-      <div className="navigate">
-        <button 
+
+        <button
+          className="carousel-navigate"
           onClick={() => {
           updateAlbum(activeAlbum - 1)
         }}
         >
         {'<'}
         </button>
-      </div>
+
       <div className="carousel">
           <div className="inner" style={{ transform: `translateX(-${activeAlbum * 100}%)` }}>
               {React.Children.map(children, (child, index) => {
@@ -70,15 +71,16 @@ const Carousel = ({ children }: carouselData) => {
               })}
           </div>
       </div>
-      <div className="navigate">
+
         <button 
+          className="carousel-navigate"
           onClick={() => {
             updateAlbum(activeAlbum + 1)
           }}
         >
         {'>'}
         </button>
-      </div>
+        
     </div>
   )
 }
