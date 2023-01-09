@@ -1,19 +1,76 @@
 @use '../../Utilities/mixins';
 @use '../../Utilities/variables';
 
+  
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.carousel {
+    overflow: hidden;
+    background-color: rgba(128, 128, 128, 0.650);
+}
+
 .album-tile {
-    margin: 1vw;
-    width: 30vw;
-    height: 40vw;
-    border-radius: 1vh;
-    box-shadow: 2px 2px 2px black;
-    white-space: normal;
     color: inherit;
     text-decoration: inherit;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    color: white;
 }
 
 .album-image {
-    width:30vw;
-    height: 30vw;
+    width: 80%;
+    height: 80%;
+    box-shadow: 2px 2px 2px black;
 }
 
+.inner {
+    white-space: nowrap;
+    transition: transform 0.3s;
+    height: 55vh;
+    width: 150vh;
+}
+
+.carousel-navigate {
+    height: 55vh;
+    background-color: rgba(128, 128, 128, 0.650);
+    margin: 0;
+    border: none;
+    width: 10vh;
+}
+
+.carousel-navigate:hover {
+    background-color: rgba(180, 180, 180, 0.65);
+}
+
+.navigate > button {
+    margin: 1vw;
+    font-size: 5vw;
+    height: 5vw;
+    width: 5vw;
+}
+
+.color {
+    width: 50%;
+    height: 50%;
+}
+
+.carousel-titles {
+    color: inherit;
+    text-decoration: none;
+    word-wrap: normal;
+    white-space: normal;
+    overflow: wrap;
+    text-align: center;
+    text-shadow: 2px 2px 2px black;
+}
+
+.title-container {
+    width:100%;
+}

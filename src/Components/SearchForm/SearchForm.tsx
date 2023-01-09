@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './_SearchForm.scss';
 import ArtistResults from '../ArtistResults/ArtistResults';
-import Carousel from '../Carousel/Carousel';
+import Carousel, { CarouselTile } from '../Carousel/Carousel';
 import fetchData from '../../Helper/APIcalls';
 import SearchError from '../SearchError/SearchError';
 import { FetchAlbumsDatum, FetchArtistsDatum, SearchedAlbumsState } from '../../interfaces';
@@ -123,7 +123,12 @@ const SearchForm = () => {
       {(searchName && !selectedArtist && !artistSearchError) && <ArtistResults searchName={searchName} results={searchResults}/>}
       {artistSearchError && <SearchError errorMessage={artistSearchError}/>}
       {(selectedArtist && !albumsSearchError && !artistSearchError) && 
-        <Carousel albums={ albumsByArtist } artist={ selectedArtist } deleteAlbum={() => {}} />
+        <Carousel>
+          {albumsByArtist.map((album, index) => {
+            return (
+              <CarouselTile album={album} key={index} width={`${1/3*100}%`} ></CarouselTile>
+            )
+        })}</Carousel>
       }
       {(albumsSearchError && !artistSearchError) && <SearchError errorMessage={albumsSearchError}/>}
     </div>

@@ -1,6 +1,6 @@
 import { useState, FC } from 'react'
 import {SavedAlbum} from "../../interfaces"
-import Carousel from '../Carousel/Carousel'
+import Carousel, {CarouselTile} from '../Carousel/Carousel'
 import './_UserCollection.scss'
 
 
@@ -31,7 +31,12 @@ const UserCollection: FC<Props> = ({ savedAlbums, deleteAlbum }) => {
           onChange={event => setFilter(event.target.value)}
         />
         {savedAlbums.length === 0 && <h2>Nothing to display, go search and save some albums!</h2>}
-        <Carousel albums={filteredCollection} artist={''} deleteAlbum={deleteAlbum}/>
+        {<Carousel>
+          {savedAlbums.map((album, index) => {
+            return (
+              <CarouselTile album={album} key={index} width={`${1/3*100}%`} ></CarouselTile>
+            )
+        })}</Carousel>}
       </div>
     </section> 
   )
