@@ -80,6 +80,11 @@ const SearchForm = () => {
     setSearchField('')
   }
 
+  const handleInputChange = (input: string) => {
+    const formInput = input.replace(/[&\/\\#%?<>{}]/g, '');
+    setSearchField(formInput);
+  }
+
   useEffect(() => {
     if (searchName) {
       setArtistSearchError('');
@@ -108,10 +113,10 @@ const SearchForm = () => {
       <form className='search-form'>
         <input
           className='search-input' 
-          type='text' 
-          placeholder='Search for your favorite artists' 
+          type='text'
+          placeholder='Search for your favorite artists'
           value={searchField} 
-          onChange={event => setSearchField(event.target.value)}
+          onChange={event => handleInputChange(event.target.value)}
           />
         <Link to={`/search/${searchField}`}>
           <button className='search-button'>Search</button>
