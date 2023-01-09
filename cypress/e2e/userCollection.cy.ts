@@ -19,11 +19,11 @@ describe("My Collection test", () => {
     cy.contains("h1", "My Collection")
   })
   it("Should display a form", () => {
-    cy.get(".form")
+    cy.get(".form").should("exist")
   })
   it("Should have an input field", () => {
     cy.get(".form").within(() => {
-      cy.get(".search-input")
+      cy.get(".search-input").should("exist")
     }) 
   })
   it("Should have one album saved", () => {
