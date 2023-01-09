@@ -10,9 +10,14 @@ export interface FetchAlbumsDatum {
 export interface  FetchArtistsDatum {
   name: string
 }
+export interface SavedAlbum {
+  artist: string
+  name: string
+  picURL: string
+}
 
 export interface SearchedAlbumsState {
-  artist: string,
-  name: string, 
+  artist: string
+  name: string
   picURL: string
 }
