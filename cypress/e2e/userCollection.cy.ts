@@ -1,35 +1,47 @@
+/// <reference types="cypress" />
+
 describe("My Collection test", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/my-collection")
+    cy.intercept(
+      {
+        method: "GET",
+        url: "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=the+beatles&album=rubber+soul&format=json",
+      },
+      {
+        fixture: "albumDetailsRubberSoul.json",
+      }
+    )
+    cy.visit("http://localhost:3000/album/the+beatles/rubber+soul")
+    cy.get(".add-button").click()
+    cy.get(":nth-child(2) > a > .nav-button").click()
   })
   it("Should display the header", () => {
     cy.contains("h1", "My Collection")
   })
   it("Should display a form", () => {
-    cy.get(".form")
+    cy.get(".form").should("exist")
   })
-  it("Should have an input field and two buttons in the form", () => {
+  it("Should have an input field", () => {
     cy.get(".form").within(() => {
-      cy.get(".search-input")
-      cy.get(".filter-button").contains("Search")
-      cy.get(".clear-filter-button").contains("Clear Search Filter")
+      cy.get(".search-input").should("exist")
     }) 
   })
-  it("Should display what the user has typed in the input field", () => {
-    cy.get(".search-input").type("heart").should("have.value", "heart")
+  it("Should have one album saved", () => {
+    cy.get(".album-image").should("have.length", "1")
   })
-  it("Should display only the search filters and display all albums when clear filters is pressed", () => {
-    cy.get(".search-input").type("heart").should("have.value", "heart")
-      cy.get(".filter-button").click()
-        cy.get(".single-card").should("have.length", "1")
-        cy.get(".single-card").contains("Gone Gator")
-      cy.get(".clear-filter-button").click()
-        cy.get(".single-card").should("have.length", "2")
+  it("Should have the album image and name", () => {
+    cy.get(".album-tile").contains("Rubber Soul")
+    cy.get(".album-image").should("be.visible")
   })
-  it("Should display an image with an alt tag", () => {
-    cy.get(".single-card").eq(0).within(() => {
-      cy.get(".album-image").should("be.visible")
-      cy.get(".album-image").should("have.attr", "alt", "Album cover image of Mojo")
-    })
+  it("Should display the image alt tag", () => {
+    cy.get(".album-image").should("have.attr", "alt", "Album cover image of Rubber Soul")
+  })
+  it("Should be able to delete an album", () => {
+    cy.get(".delete-album").click()
+    cy.get(".album-image").should("have.length", "0")
+  })
+  it("Should display a message if there are no saved albums", () => {
+    cy.get(".delete-album").click()
+    cy.get(".form").contains("h2", "Nothing to display, go search and save some albums!")
   })
 })
