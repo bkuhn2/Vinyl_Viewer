@@ -11,32 +11,38 @@ interface carouselTileData  {
   },
   children?: React.ReactNode,
   width: string,
+  deleteAlbum: (deleteName: string) => void;
 }
 
 interface carouselData {
   children: React.ReactNode
 }
 
-export const CarouselTile = ({ album, width }: carouselTileData) => {
+export const CarouselTile = ({ album, width, deleteAlbum }: carouselTileData) => {
+  let location = useLocation();
   return (
-    <Link
-      className="album-tile"
-      to={`/album/${formatURLString(album.artist)}/${formatURLString(album.name)}`}
-      style={{ width: width}}
-    >
-      <div className="carousel-title-container">
+    <div className='album-tile' style={{ width: width}}>
+      <Link
+        className='single-tile'
+        to={`/album/${formatURLString(album.artist)}/${formatURLString(album.name)}`}
+      >
+        <div className="carousel-title-container">
         <p className="carousel-title">{album.artist}</p>
         <p className="carousel-title">{album.name}</p>
       </div>
-      <img
-        className="album-image"
-        src={album.picURL}
-        alt={"Album cover image of " + album.name}
-      />
-
-    </Link>
+        
+        <img
+          className="album-image"
+          src={album.picURL}
+          alt={"Album cover image of " + album.name}
+        />
+  
+      </Link>
+      {location.pathname === '/my-collection' && <button className='delete-album' onClick={() => deleteAlbum(album.name)}>Hello</button>}
+    </div>
   )
 }
+
 
 const Carousel = ({ children }: carouselData) => {
   const [activeAlbum, newActiveAlbum] = useState(0)

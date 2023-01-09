@@ -20,7 +20,7 @@ const UserCollection: FC<Props> = ({ savedAlbums, deleteAlbum }) => {
   return (
     <section className='my-collection'>
       <header className='collection-header'>
-        <h1>My Collection</h1>
+        <h1 className='title-header'>My Collection</h1>
       </header>
       <div className='form'>
         <input
@@ -31,12 +31,12 @@ const UserCollection: FC<Props> = ({ savedAlbums, deleteAlbum }) => {
           onChange={event => setFilter(event.target.value)}
         />
         {savedAlbums.length === 0 && <h2>Nothing to display, go search and save some albums!</h2>}
-        {<Carousel>
-          {savedAlbums.map((album, index) => {
+        <Carousel>
+          {filteredCollection.map((album, index) => {
             return (
-              <CarouselTile album={album} key={index} width={`${1/3*100}%`} ></CarouselTile>
+              <CarouselTile album={album} key={index} width={`${1/3*100}%`} deleteAlbum={deleteAlbum}></CarouselTile>
             )
-        })}</Carousel>}
+        })}</Carousel>
       </div>
     </section> 
   )
