@@ -1,0 +1,10 @@
+{
+  "results": {
+    "artistmatches": {
+      "artist": [
+        {"name": "Bad Artist"},
+        {"name": "Bad Artis Collab"}
+      ]
+    }
+  }
+}

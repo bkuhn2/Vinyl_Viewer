@@ -2,7 +2,6 @@ import { useState, FC } from 'react'
 import {SavedAlbum} from "../../interfaces"
 import Carousel from '../Carousel/Carousel'
 import './_UserCollection.scss'
-import record from '../../Images/recordplaceholder.png'
 
 
 interface Props {
@@ -37,6 +36,5 @@ const UserCollection: FC<Props> = ({ savedAlbums, deleteAlbum }) => {
     </section> 
   )
 }
-// deleteAlbum={deleteAlbum}
 
 export default UserCollection;
