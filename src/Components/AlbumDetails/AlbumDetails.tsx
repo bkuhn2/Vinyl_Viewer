@@ -69,18 +69,18 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
     : null
 
   return (
-    <>
-      <span className="directory">
-        <span className="directory__artist" data-cy="directory-artist">
-          <Link to={`/search/${artistName}`}>{album.artist}</Link>
-        </span>
-        <span className="directory__album" data-cy="directory-album">
-          {" "}
-          / {album.name}
-        </span>
-      </span>
+    <div className="album-section-parent">
       <section className="album-section">
         <div className="album-details">
+          <span className="directory">
+            <span className="directory__artist" data-cy="directory-artist">
+              <Link to={`/search/${artistName}`}>{album.artist}</Link>
+            </span>
+            <span className="directory__album" data-cy="directory-album">
+              {" "}
+              / {album.name}
+            </ span>
+          </span>
           <h1 className="album-details__name" data-cy="album-name">
             {album.name}
           </h1>
@@ -107,11 +107,11 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
               Last.fm
             </a>
           </p>
-          {!!tracks &&
+          {!!tracks && (
             <ol className="album-details__tracklist" data-cy="album-tracklist">
               {tracks}
             </ol>
-          }
+          )}
         </div>
         <div className="cover">
           <div className="cover__mat">
@@ -124,7 +124,7 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   )
 }
 
