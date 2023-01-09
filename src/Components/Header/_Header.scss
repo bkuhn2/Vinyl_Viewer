@@ -4,10 +4,10 @@
 .header {
   display: flex;
   align-items: center;
-  position: relative;
-  height: 140px;
-  background-color: gray;
-
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  background-color: variables.$container-gray;
 }
 
 .header__title {
@@ -16,8 +16,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   margin: 0px;
+  font-family: 'Rock Salt';
   font-size: 3rem;
-  color: black;
+  color: white;
 }
 
 .nav {
@@ -41,12 +42,10 @@
 }
 
 .nav-button {
+  @include mixins.themeButton();
   width: 180px;
   height: 60px;
-  border: 1px solid rgb(95, 95, 95);
-  font-size: 1rem;
-
-  &:hover {
-    background-color: lighten(gray, 50%)
-  }
+  border: none;
+  border-radius: 5px;
+  font-size: 1.5rem;
 }

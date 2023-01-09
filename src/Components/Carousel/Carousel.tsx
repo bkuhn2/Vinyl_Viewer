@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import './_Carousel.scss'
 import { formatURLString } from '../../Helper/CleanUp'
-import { Link } from 'react-router-dom'
-
+import { Link, useLocation } from 'react-router-dom'
 
 interface carouselTileData  {
     album: {
@@ -12,6 +11,7 @@ interface carouselTileData  {
     },
     children?: React.ReactNode,
     width: string,
+  deleteAlbum: (deleteName: string) => void,
 }
 
 interface carouselData {
