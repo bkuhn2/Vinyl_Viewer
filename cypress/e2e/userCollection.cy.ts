@@ -2,7 +2,6 @@
 
 describe("My Collection test", () => {
   beforeEach(() => {
-    // cy.visit("http://localhost:3000/my-collection")
     cy.intercept(
       {
         method: "GET",
@@ -29,6 +28,13 @@ describe("My Collection test", () => {
   })
   it("Should have one album saved", () => {
     cy.get(".album-image").should("have.length", "1")
+  })
+  it("Should have the album image and name", () => {
+    cy.get(".album-tile").contains("Rubber Soul")
+    cy.get(".album-image").should("be.visible")
+  })
+  it("Should display the image alt tag", () => {
+    cy.get(".album-image").should("have.attr", "alt", "Album cover image of Rubber Soul")
   })
   it("Should be able to delete an album", () => {
     cy.get(".delete-album").click()
