@@ -2,9 +2,11 @@ import {FC, useEffect, useState} from "react"
 import {useParams} from "react-router-dom"
 
 import AlbumDetails from "./AlbumDetails"
+
 import {SavedAlbum} from "../App/App"
 import {fetchPage} from "../../Helper/fetchPage"
 import {AlbumInterface} from "../../interfaces"
+
 
 interface ContainerProps {
   addToCollection: Function

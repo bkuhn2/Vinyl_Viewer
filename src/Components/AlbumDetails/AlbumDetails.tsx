@@ -4,7 +4,7 @@ import {useParams, Link} from "react-router-dom"
 import "./_AlbumDetails.scss"
 import {AlbumInterface} from "../../interfaces"
 import formatReleaseDate from "../../Helper/formatReleaseDate"
-import {SavedAlbum} from "../App/App"
+import {SavedAlbum} from "../../interfaces"
 
 import fallback from "../../Images/fallback.png"
 
@@ -27,7 +27,7 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
       const sameArtistName =
         album.artist.toLowerCase() === artistName?.replace(/\+/g, " ")
       const sameAlbumName =
-        album.albumTitle.toLowerCase() === albumName?.replace(/\+/g, " ")
+        album.name.toLowerCase() === albumName?.replace(/\+/g, " ")
       return sameArtistName && sameAlbumName
     })
     setIsSaved(isSaved)
@@ -35,11 +35,9 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
 
   const handleSubmit = () => {
     addToCollection({
-      id: Date.now(),
-      albumTitle: album.name,
       artist: album.artist,
-      releaseDate: formattedDate,
-      coverUrl: album.image,
+      name: album.name,
+      picURL: album.image,
     })
     setIsSaved(true)
   }
