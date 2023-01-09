@@ -1,19 +1,13 @@
 @use '../../Utilities/mixins';
 @use '../../Utilities/variables';
 
-// .carousel-container {
-//     display: flex;
-//     align-items: center;
-//     flex-direction: row;
-//     margin: 5%;
-//     width: 80vw;
-//     height: 60vh;
-//     border-style: solid;
-//     overflow-x: auto;
-//     overflow-y: hidden;
-//     white-space: nowrap;
-//   }
   
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
 .carousel {
     overflow: hidden;
 }
@@ -54,12 +48,12 @@
     text-decoration: inherit;
 }
 
-.indicators {
-    display: flex;
-    justify-content: center;
+.navigate {
+    // display: flex;
+    // justify-content: center;
 }
 
-.indicators > button {
+.navigate > button {
     margin: 1vw;
     font-size: 5vw;
     height: 5vw;
@@ -74,4 +68,11 @@
 .album-title {
     color: inherit;
     text-decoration: none;
+    word-wrap: normal;
+    white-space: normal;
+    overflow: wrap;
+}
+
+.title-container {
+    width:100%;
 }

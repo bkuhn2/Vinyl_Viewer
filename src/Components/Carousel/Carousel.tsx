@@ -29,7 +29,9 @@ export const CarouselTile = ({ album, width }: carouselTileData) => {
         className="album-image"
         src={album.picURL}
       />
-      <h2 className="album-title">{album.name}</h2>
+      <div className="title-con">
+        <h2 className="album-title">{album.name}</h2>
+      </div>
     </Link>
   )
 }
@@ -48,6 +50,16 @@ const Carousel = ({ children }: carouselData) => {
       newActiveAlbum(albumIndex)
   }
   return (
+    <div className="carousel-container">
+      <div className="navigate">
+        <button 
+          onClick={() => {
+          updateAlbum(activeAlbum - 1)
+        }}
+        >
+        {'<'}
+        </button>
+      </div>
       <div className="carousel">
           <div className="inner" style={{ transform: `translateX(-${activeAlbum * 100}%)` }}>
               {React.Children.map(children, (child, index) => {
@@ -57,23 +69,17 @@ const Carousel = ({ children }: carouselData) => {
                   return
               })}
           </div>
-          <div className="indicators">
-              <button 
-                  onClick={() => {
-                      updateAlbum(activeAlbum - 1)
-                  }}
-                  >
-                      {'<'}
-              </button>
-              <button 
-                  onClick={() => {
-                      updateAlbum(activeAlbum + 1)
-                  }}
-                  >
-                      {'>'}
-              </button>
-          </div>
       </div>
+      <div className="navigate">
+        <button 
+          onClick={() => {
+            updateAlbum(activeAlbum + 1)
+          }}
+        >
+        {'>'}
+        </button>
+      </div>
+    </div>
   )
 }
 
