@@ -26,7 +26,7 @@ export const CarouselTile = ({ album, width, deleteAlbum }: carouselTileData) =>
         className='single-tile'
         to={`/album/${formatURLString(album.artist)}/${formatURLString(album.name)}`}
       >
-        <div className="carousel-title-container">
+      <div className="carousel-title-container">
         <p className="carousel-title">{album.artist}</p>
         <p className="carousel-title">{album.name}</p>
       </div>
@@ -38,7 +38,7 @@ export const CarouselTile = ({ album, width, deleteAlbum }: carouselTileData) =>
         />
   
       </Link>
-      {location.pathname === '/my-collection' && <button className='delete-album' onClick={() => deleteAlbum(album.name)}>Hello</button>}
+      {location.pathname === '/my-collection' && <button className='delete-album' onClick={() => deleteAlbum(album.name)}>Remove From My Collection</button>}
     </div>
   )
 }

@@ -21,7 +21,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 50vh;
+    height: 55vh;
+    color: white;
+}
+
+.single-tile {
+    color: inherit;
+    text-decoration: inherit;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 95%;
+    width: 95%;
     color: white;
 }
 
@@ -67,7 +79,7 @@
     align-content: center;
     justify-content: center;
     width: 20em;
-    height: 5em;
+    height: 4em;
     background: url(/Images/whitetape.png);  
     background-size: cover;
     text-align: center;  
@@ -85,4 +97,20 @@
     font-weight: 200;
     color: rgba(0, 0, 0, 0.729);
     margin: 0;
+    text-shadow: none;
+  }
+
+  .delete-album {
+    height:100%;
+    background-color: rgba(128, 128, 128, 0.650);
+    margin: 0;
+    border: none;
+    width: 80%;
+    font-size: 100%;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+  }
+
+  .delete-album:hover {
+    background-color: rgba(230, 0, 0, 0.65);
   }
