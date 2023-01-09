@@ -40,4 +40,8 @@ describe("My Collection test", () => {
     cy.get(".delete-album").click()
     cy.get(".album-image").should("have.length", "0")
   })
+  it("Should display a message if there are no saved albums", () => {
+    cy.get(".delete-album").click()
+    cy.get(".form").contains("h2", "Nothing to display, go search and save some albums!")
+  })
 })
