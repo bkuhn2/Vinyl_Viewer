@@ -24,7 +24,9 @@ const SearchForm = () => {
   const searchArtists = (searchName: string) => {
     fetchData(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${searchName}&api_key=fcf48a134034bb684aa87d0e0309a0fd
     &format=json`)
-      .then(data => {     
+      .then(data => {   
+        console.log(data);
+          
         if (data.results.artistmatches.artist.length === 0) {
           throw new Error(`Looks like we don't have any artists matching that name...`);
         } else {
