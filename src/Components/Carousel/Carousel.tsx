@@ -11,21 +11,20 @@ interface carouselTileData  {
       picURL: string  
     },
     children?: React.ReactNode,
-    width?: string
+    width: string,
 }
 
 interface carouselData {
   children: React.ReactNode
 }
 
-export const CarouselTile = ({ album, children, width }: carouselTileData) => {
+export const CarouselTile = ({ album, width }: carouselTileData) => {
   return (
     <Link
       className="album-tile"
       to={`/album/${formatURLString(album.artist)}/${formatURLString(album.name)}`}
       style={{ width: width}}
     >
-      {children}
       <img
         className="album-image"
         src={album.picURL}
@@ -35,11 +34,9 @@ export const CarouselTile = ({ album, children, width }: carouselTileData) => {
   )
 }
 
-const Carousel = ({ children }) => {
+const Carousel = ({ children }: carouselData) => {
   const [activeAlbum, newActiveAlbum] = useState(0)
-  console.log(children)
   const updateAlbum = ( albumIndex: number ) => {
-    console.log(albumIndex)
       if (albumIndex < 0) {
           albumIndex = React.Children.count(children) - 1
       } 
@@ -50,13 +47,14 @@ const Carousel = ({ children }) => {
 
       newActiveAlbum(albumIndex)
   }
-
   return (
       <div className="carousel">
           <div className="inner" style={{ transform: `translateX(-${activeAlbum * 100}%)` }}>
-              {React.Children.map(children, (child) => {
-                console.log(child) 
-                  return React.cloneElement(child, {width: "100%" })
+              {React.Children.map(children, (child, index) => {
+                  if(React.isValidElement(child)) {
+                    return React.cloneElement(child)
+                  }
+                  return
               })}
           </div>
           <div className="indicators">
