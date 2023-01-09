@@ -6,6 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;    
+    margin-top: 1em;
 }
 
 .carousel {
@@ -25,8 +26,8 @@
 }
 
 .album-image {
-    width: 80%;
-    height: 80%;
+    width: 83%;
+    height: 83%;
     box-shadow: 2px 2px 2px black;
 }
 
@@ -57,11 +58,6 @@
     font-size: 5vw;
     height: 5vw;
     width: 5vw;
-}
-
-.color {
-    width: 50%;
-    height: 50%;
 }
 
 .carousel-title-container {
