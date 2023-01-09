@@ -29,6 +29,7 @@ export const CarouselTile = ({ album, width }: carouselTileData) => {
       <img
         className="album-image"
         src={album.picURL}
+        alt={"Album cover image of " + album.name}
       />
       <h2 className="carousel-titles">{album.name}</h2>
     </Link>
