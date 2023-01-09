@@ -32,7 +32,7 @@ const UserCollection: FC<Props> = ({ savedAlbums, deleteAlbum }) => {
         />
         {savedAlbums.length === 0 && <h2>Nothing to display, go search and save some albums!</h2>}
         {<Carousel>
-          {carouselAlbum.map((album, index) => {
+          {savedAlbums.map((album, index) => {
             return (
               <CarouselTile album={album} key={index} width={`${1/3*100}%`} ></CarouselTile>
             )

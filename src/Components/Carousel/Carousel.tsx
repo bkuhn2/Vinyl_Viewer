@@ -4,14 +4,13 @@ import { formatURLString } from '../../Helper/CleanUp'
 import { Link, useLocation } from 'react-router-dom'
 
 interface carouselTileData  {
-    album: {
-      artist: string,
-      name: string, 
-      picURL: string,
-    },
-    children?: React.ReactNode,
-    width: string,
-  deleteAlbum: (deleteName: string) => void,
+  album: {
+    artist: string,
+    name: string, 
+    picURL: string,
+  },
+  children?: React.ReactNode,
+  width: string,
 }
 
 interface carouselData {
