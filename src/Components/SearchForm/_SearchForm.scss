@@ -42,13 +42,12 @@
 }
 
 .search-button {
+  @include mixins.themeButton();
   width: 6em;
   height: 1.6em;
   border-radius: 60px;
   font-size: 1.5em;
-  font-family: 'Staatliches';
   margin-left: .5em;
-  @include mixins.themeButton();
   border: none;
   box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.3);
 }

@@ -6,7 +6,7 @@ import {AlbumInterface} from "../../interfaces"
 import formatReleaseDate from "../../Helper/formatReleaseDate"
 import {SavedAlbum} from "../App/App"
 
-import fallback from "../../assets/fallback.png"
+import fallback from "../../Images/fallback.png"
 
 interface Props {
   addToCollection: Function
@@ -103,14 +103,20 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
           </article>
           <p className="album-details__last-link">
             {"view on "}
-            <a href={album.lastURL} data-cy="album-link">
+            <a
+              href={album.lastURL} 
+              data-cy="album-link"
+            >
               Last.fm
             </a>
           </p>
           {!!tracks && (
-            <ol className="album-details__tracklist" data-cy="album-tracklist">
-              {tracks}
-            </ol>
+            <>
+              <p>Tracklist:</p>
+              <ol className="album-details__tracklist" data-cy="album-tracklist">
+                {tracks}
+              </ol>
+            </>
           )}
         </div>
         <div className="cover">
