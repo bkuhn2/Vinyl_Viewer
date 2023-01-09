@@ -1,1 +1,16 @@
-@use './variables'
+@use './variables';
+
+@mixin exploreBg() {
+  background: linear-gradient(10deg, rgba(44, 43, 43, 0.543) 19%, rgba(44, 26, 27, 0.628) 83%), url(/Images/recordstore1.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+@mixin themeButton() {
+  background-color: rgb(69, 183, 191);
+  font-family: 'Staatliches';
+
+  &:hover {
+    background-color: lighten(rgb(69, 183, 191), 20%)
+  }
+}
