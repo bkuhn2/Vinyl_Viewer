@@ -67,68 +67,63 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
     : null
 
   return (
-    <div className="album-section-parent">
-      <section className="album-section">
-        <div className="album-details">
-          <span className="directory">
-            <span className="directory__artist" data-cy="directory-artist">
-              <Link to={`/search/${artistName}`}>{album.artist}</Link>
-            </span>
-            <span className="directory__album" data-cy="directory-album">
-              {" "}
-              / {album.name}
-            </ span>
+    <section className="album-section" data-cy="album-section">
+      <div className="album-details">
+        <span className="directory">
+          <span className="directory__artist" data-cy="directory-artist">
+            <Link to={`/search/${artistName}`}>{album.artist}</Link>
           </span>
-          <h1 className="album-details__name" data-cy="album-name">
-            {album.name}
-          </h1>
-          {isSaved ? (
-            previouslySavedMessage
-          ) : (
-            <button
-              className="add-button"
-              data-cy="add-button"
-              onClick={() => handleSubmit()}
-            >
-              add to my collection
-            </button>
-          )}
-          <p className="album-details__date" data-cy="album-date">
-            {!!album.releaseDate && `released on: ${getReleaseDate()}`}
-          </p>
-          <article className="album-details__article" data-cy="album-article">
-            {!!formattedArticle && `${formattedArticle}... (cont.)`}
-          </article>
-          <p className="album-details__last-link">
-            {"view on "}
-            <a
-              href={album.lastURL} 
-              data-cy="album-link"
-            >
-              Last.fm
-            </a>
-          </p>
-          {!!tracks && (
-            <>
-              <p>Tracklist:</p>
-              <ol className="album-details__tracklist" data-cy="album-tracklist">
-                {tracks}
-              </ol>
-            </>
-          )}
+          <span className="directory__album" data-cy="directory-album">
+            {" "}
+            / {album.name}
+          </span>
+        </span>
+        <h1 className="album-details__name" data-cy="album-name">
+          {album.name}
+        </h1>
+        {isSaved ? (
+          previouslySavedMessage
+        ) : (
+          <button
+            className="add-button"
+            data-cy="add-button"
+            onClick={() => handleSubmit()}
+          >
+            add to my collection
+          </button>
+        )}
+        <p className="album-details__date" data-cy="album-date">
+          {!!album.releaseDate && `released on: ${getReleaseDate()}`}
+        </p>
+        <article className="album-details__article" data-cy="album-article">
+          {!!formattedArticle && `${formattedArticle}... (cont.)`}
+        </article>
+        <p className="album-details__last-link">
+          {"view on "}
+          <a href={album.lastURL} data-cy="album-link">
+            Last.fm
+          </a>
+        </p>
+        {!!tracks && (
+          <>
+            <p>Tracklist:</p>
+            <ol className="album-details__tracklist" data-cy="album-tracklist">
+              {tracks}
+            </ol>
+          </>
+        )}
+      </div>
+      <div className="cover">
+        <div className="cover__mat">
+          <img
+            className="cover__mat__img"
+            src={!!album.image ? album.image : fallback}
+            alt={`album artwork for ${album.name} by ${album.artist}`}
+            data-cy="album-cover"
+          />
         </div>
-        <div className="cover">
-          <div className="cover__mat">
-            <img
-              className="cover__mat__img"
-              src={!!album.image ? album.image : fallback}
-              alt={`album artwork for ${album.name} by ${album.artist}`}
-              data-cy="album-cover"
-            />
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </section>
   )
 }
 
