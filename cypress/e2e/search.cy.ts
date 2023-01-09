@@ -55,7 +55,7 @@ describe('Search Page Functionality', () => {
       .should('have.attr', 'href', '/search/Smash Mouth/Smash Mouth')
   });
 
-  it('Should retrieve albums data when clicking on a search result', () => {
+  it('Should display a carousel of albums when clicking on a search result', () => {
     cy.get('.search-input')
     .type('Smash Mouth')
 
@@ -65,11 +65,33 @@ describe('Search Page Functionality', () => {
     cy.get('.artist-results-section')
       .get('#0')
       .click();
+    cy.get('.carousel')
+        .get('.inner')
+          .find('.album-tile[href="/album/smash+mouth/astro+lounge"]')
+            .contains('Astro Lounge')
+    cy.get('.carousel')
+        .get('.inner')
+          .find('.album-tile[href="/album/smash+mouth/shrek"]')
+            .contains('Shrek')      
+  });
 
-    /*
-      Incomplete, need check carousel for visual confirmation 
-      but I did verify that state does update to the stubbed fixture data
-    */
+  it('should navigate to the album details page when an album is clicked', () => {
+    cy.get('.search-input')
+    .type('Smash Mouth')
+
+    cy.get('.search-button')
+      .click()
+
+    cy.get('.artist-results-section')
+      .get('#0')
+      .click()
+
+    cy.get('.carousel')
+      .get('.inner')
+        .find('.album-tile[href="/album/smash+mouth/shrek"]')
+          .click()
+            .url().should('include', '/album/smash+mouth/shrek')
+    
   });
 
 })

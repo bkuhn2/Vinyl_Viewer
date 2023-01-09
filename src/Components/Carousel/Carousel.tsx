@@ -8,7 +8,7 @@ interface carouselTileData  {
     album: {
       artist: string,
       name: string, 
-      picURL: string  
+      picURL: string,
     },
     children?: React.ReactNode,
     width: string,
@@ -59,10 +59,9 @@ const Carousel = ({ children }: carouselData) => {
         >
         {'<'}
         </button>
-
       <div className="carousel">
           <div className="inner" style={{ transform: `translateX(-${activeAlbum * 1/3 * 100}%)` }}>
-              {React.Children.map(children, (child, index) => {
+              {React.Children.map(children, (child) => {
                   if(React.isValidElement(child)) {
                     return React.cloneElement(child)
                   }
@@ -70,7 +69,6 @@ const Carousel = ({ children }: carouselData) => {
               })}
           </div>
       </div>
-
         <button 
           className="carousel-navigate"
           onClick={() => {
