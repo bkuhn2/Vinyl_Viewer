@@ -2,11 +2,11 @@ import {FC, useEffect, useState} from "react"
 import {useParams, Link} from "react-router-dom"
 
 import "./_AlbumDetails.scss"
-import {AlbumInterface} from "../../Helper/fetchPage"
+import {AlbumInterface} from "../../interfaces"
 import formatReleaseDate from "../../Helper/formatReleaseDate"
-import {SavedAlbum} from "../App/App"
+import {SavedAlbum} from "../../interfaces"
 
-import fallback from "../../assets/fallback.png"
+import fallback from "../../Images/fallback.png"
 
 interface Props {
   addToCollection: Function
@@ -27,7 +27,7 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
       const sameArtistName =
         album.artist.toLowerCase() === artistName?.replace(/\+/g, " ")
       const sameAlbumName =
-        album.albumTitle.toLowerCase() === albumName?.replace(/\+/g, " ")
+        album.name.toLowerCase() === albumName?.replace(/\+/g, " ")
       return sameArtistName && sameAlbumName
     })
     setIsSaved(isSaved)
@@ -35,11 +35,9 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
 
   const handleSubmit = () => {
     addToCollection({
-      id: Date.now(),
-      albumTitle: album.name,
       artist: album.artist,
-      releaseDate: formattedDate,
-      coverUrl: album.image,
+      name: album.name,
+      picURL: album.image,
     })
     setIsSaved(true)
   }
@@ -69,18 +67,18 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
     : null
 
   return (
-    <>
-      <span className="directory">
-        <span className="directory__artist" data-cy="directory-artist">
-          <Link to={`/search/${artistName}`}>{album.artist}</Link>
-        </span>
-        <span className="directory__album" data-cy="directory-album">
-          {" "}
-          / {album.name}
-        </span>
-      </span>
+    <div className="album-section-parent">
       <section className="album-section">
         <div className="album-details">
+          <span className="directory">
+            <span className="directory__artist" data-cy="directory-artist">
+              <Link to={`/search/${artistName}`}>{album.artist}</Link>
+            </span>
+            <span className="directory__album" data-cy="directory-album">
+              {" "}
+              / {album.name}
+            </ span>
+          </span>
           <h1 className="album-details__name" data-cy="album-name">
             {album.name}
           </h1>
@@ -103,15 +101,21 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
           </article>
           <p className="album-details__last-link">
             {"view on "}
-            <a href={album.lastURL} data-cy="album-link">
+            <a
+              href={album.lastURL} 
+              data-cy="album-link"
+            >
               Last.fm
             </a>
           </p>
-          {!!tracks &&
-            <ol className="album-details__tracklist" data-cy="album-tracklist">
-              {tracks}
-            </ol>
-          }
+          {!!tracks && (
+            <>
+              <p>Tracklist:</p>
+              <ol className="album-details__tracklist" data-cy="album-tracklist">
+                {tracks}
+              </ol>
+            </>
+          )}
         </div>
         <div className="cover">
           <div className="cover__mat">
@@ -124,7 +128,7 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   )
 }
 

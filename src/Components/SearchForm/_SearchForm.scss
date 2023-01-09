@@ -5,12 +5,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: 85vh;
   width: 100vw;
-  background: linear-gradient(10deg, rgba(44, 43, 43, 0.543) 19%, rgba(44, 26, 27, 0.628) 83%), url(/Images/recordstore1.jpg);
-  background-size: cover;
-  background-attachment: fixed;
-
+  padding-top: 15vh;
+  @include mixins.exploreBg()
 }
 
 .search-header {
@@ -44,13 +42,12 @@
 }
 
 .search-button {
+  @include mixins.themeButton();
   width: 6em;
   height: 1.6em;
   border-radius: 60px;
   font-size: 1.5em;
-  font-family: 'Staatliches';
   margin-left: .5em;
-  background-color: rgb(69, 183, 191);
   border: none;
   box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.3);
 }
@@ -67,3 +64,5 @@
   overflow-y: hidden;
   white-space: nowrap;
 }
+
+

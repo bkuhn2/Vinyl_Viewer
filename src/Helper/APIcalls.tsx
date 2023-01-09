@@ -5,9 +5,7 @@ const fetchData = (url: string) => {
     if (response.ok) {
       return response.json()
     } else {
-      console.log('bad response: ', response);
-      
-      throw new Error('**record scratch** ....something went wrong')
+      throw new Error('bad response')
     }
   })
 }
