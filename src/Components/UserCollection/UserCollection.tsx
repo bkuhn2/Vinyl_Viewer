@@ -55,7 +55,7 @@ const UserCollection: FC<Props> = ({ savedAlbums }) => {
         {<Carousel>
           {carouselAlbum.map((album, index) => {
             return (
-              <CarouselTile album={album} key={index} width={'100%'} ></CarouselTile>
+              <CarouselTile album={album} key={index} width={`${1/3*100}%`} ></CarouselTile>
             )
         })}</Carousel>}
       </div>

@@ -25,20 +25,20 @@
 }
 
 .album-image {
-    width: 50%;
-    height: 50%;
+    width: 80%;
+    height: 80%;
     box-shadow: 2px 2px 2px black;
 }
 
 .inner {
     white-space: nowrap;
     transition: transform 0.3s;
-    height: 50vh;
-    width: 50vh;
+    height: 55vh;
+    width: 150vh;
 }
 
 .carousel-navigate {
-    height: 50vh;
+    height: 55vh;
     background-color: rgba(128, 128, 128, 0.650);
     margin: 0;
     border: none;
@@ -61,12 +61,14 @@
     height: 50%;
 }
 
-.album-title {
+.carousel-titles {
     color: inherit;
     text-decoration: none;
     word-wrap: normal;
     white-space: normal;
     overflow: wrap;
+    text-align: center;
+    text-shadow: 2px 2px 2px black;
 }
 
 .title-container {

@@ -25,13 +25,12 @@ export const CarouselTile = ({ album, width }: carouselTileData) => {
       to={`/album/${formatURLString(album.artist)}/${formatURLString(album.name)}`}
       style={{ width: width}}
     >
+      <h2 className="carousel-titles">{album.artist}</h2>
       <img
         className="album-image"
         src={album.picURL}
       />
-      <div className="title-con">
-        <h2 className="album-title">{album.name}</h2>
-      </div>
+      <h2 className="carousel-titles">{album.name}</h2>
     </Link>
   )
 }
@@ -62,7 +61,7 @@ const Carousel = ({ children }: carouselData) => {
         </button>
 
       <div className="carousel">
-          <div className="inner" style={{ transform: `translateX(-${activeAlbum * 100}%)` }}>
+          <div className="inner" style={{ transform: `translateX(-${activeAlbum * 1/3 * 100}%)` }}>
               {React.Children.map(children, (child, index) => {
                   if(React.isValidElement(child)) {
                     return React.cloneElement(child)
@@ -80,7 +79,7 @@ const Carousel = ({ children }: carouselData) => {
         >
         {'>'}
         </button>
-        
+
     </div>
   )
 }
