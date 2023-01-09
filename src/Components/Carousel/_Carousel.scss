@@ -74,6 +74,9 @@
     padding-left: 2.7em;
     padding-right: 2em;
     text-decoration: none;
+    overflow: hidden;
+    white-space: wrap;
+    word-wrap: wrap;
   }
   
   .carousel-title {
