@@ -24,13 +24,16 @@ export const CarouselTile = ({ album, width }: carouselTileData) => {
       to={`/album/${formatURLString(album.artist)}/${formatURLString(album.name)}`}
       style={{ width: width}}
     >
-      <h2 className="carousel-titles">{album.artist}</h2>
+      <div className="carousel-title-container">
+        <p className="carousel-title">{album.artist}</p>
+        <p className="carousel-title">{album.name}</p>
+      </div>
       <img
         className="album-image"
         src={album.picURL}
         alt={"Album cover image of " + album.name}
       />
-      <h2 className="carousel-titles">{album.name}</h2>
+
     </Link>
   )
 }

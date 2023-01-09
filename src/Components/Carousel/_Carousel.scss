@@ -34,7 +34,7 @@
     white-space: nowrap;
     transition: transform 0.3s;
     height: 55vh;
-    width: 150vh;
+    width: 80vw;
 }
 
 .carousel-navigate {
@@ -43,6 +43,9 @@
     margin: 0;
     border: none;
     width: 10vh;
+    font-size: 8vh;
+    color: white;
+    text-shadow: 2px 2px 2px black;
 }
 
 .carousel-navigate:hover {
@@ -61,16 +64,26 @@
     height: 50%;
 }
 
-.carousel-titles {
-    color: inherit;
+.carousel-title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 20em;
+    height: 5em;
+    background: url(/Images/whitetape.png);  
+    background-size: cover;
+    text-align: center;  
+    padding-left: 2.7em;
+    padding-right: 2em;
     text-decoration: none;
-    word-wrap: normal;
-    white-space: normal;
-    overflow: wrap;
-    text-align: center;
-    text-shadow: 2px 2px 2px black;
-}
-
-.title-container {
-    width:100%;
-}
+  }
+  
+  .carousel-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.3em;
+    font-weight: 200;
+    color: rgba(0, 0, 0, 0.729);
+    margin: 0;
+  }
