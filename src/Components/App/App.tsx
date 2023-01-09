@@ -9,9 +9,7 @@ import UserCollection from "../UserCollection/UserCollection"
 import {SavedAlbum} from "../../interfaces"
 
 function App() {
-  const [userCollection, setUserCollection] = useState<SavedAlbum[]>([
-
-  ])
+  const [userCollection, setUserCollection] = useState<SavedAlbum[]>([])
 
   const deleteAlbum = (deleteName: string) => {
     let newArray = userCollection.filter(album => {
@@ -44,7 +42,12 @@ function App() {
         />
         <Route
           path="/my-collection"
-          element={<UserCollection savedAlbums={userCollection} deleteAlbum={deleteAlbum}/>}
+          element={
+            <UserCollection
+              savedAlbums={userCollection}
+              deleteAlbum={deleteAlbum}
+            />
+          }
         />
       </Route>
     </Routes>

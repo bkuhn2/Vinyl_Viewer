@@ -115,3 +115,11 @@ describe("Album Details Page (missing data)", () => {
     cy.get('[data-cy="album-cover"]').invoke("attr", "src").should("eq", "/static/media/fallback.36cccec721043b9b96a4.png")
   })
 })
+
+describe("Album Details Page (error handling)", () => {
+  it("should show an error message if a bad request is made", () => {
+    cy.visit("http://localhost:3000/album/led+zeppelin/led+zelin+ii")
+    cy.get('[data-cy="album-section"]').should("not.exist")
+    cy.get('[data-cy="album-detail-error"]').should("be.visible")
+  })
+})

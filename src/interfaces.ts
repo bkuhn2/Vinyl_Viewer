@@ -16,6 +16,25 @@ interface Track {
   album: string
 }
 
+export interface FetchedTrack {
+  "@attr": {
+    rank: string
+  }
+  artist: {
+    url: string
+    name: string
+    mbid: string
+  }
+  duration: number
+  name: string
+  streamable: {
+    fulltrack: string
+    "#text": string
+  }
+  url: string
+}
+
+
 export interface FetchAlbumsDatum {
   artist: {name: string},
   name: string, 
