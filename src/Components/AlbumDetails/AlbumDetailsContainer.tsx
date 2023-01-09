@@ -2,8 +2,10 @@ import {FC, useEffect, useState} from "react"
 import {useParams} from "react-router-dom"
 
 import AlbumDetails from "./AlbumDetails"
-import {SavedAlbum} from "../App/App"
-import {fetchPage, AlbumInterface} from "../../Helper/fetchPage"
+
+import {SavedAlbum} from "../../interfaces"
+import {fetchPage} from "../../Helper/fetchPage"
+import {AlbumInterface} from "../../interfaces"
 
 interface ContainerProps {
   addToCollection: Function
@@ -22,9 +24,7 @@ const AlbumDetailsContainer: FC<ContainerProps> = ({
   }, [])
 
   const getPage = async () => {
-    const albumData = await fetchPage(
-      `http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=${artistName}&album=${albumName}&format=json`
-    )
+    const albumData = await fetchPage(`http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=${artistName}&album=${albumName}&format=json`)
     setAlbum(albumData)
   }
 

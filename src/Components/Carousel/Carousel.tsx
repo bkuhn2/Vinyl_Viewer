@@ -1,6 +1,5 @@
-import React from 'react'
 import './_Carousel.scss'
-import formatURLString from '../../Helper/CleanUp'
+import { formatURLString } from '../../Helper/CleanUp'
 import { Link } from 'react-router-dom'
 
 type Props = {
@@ -9,10 +8,11 @@ type Props = {
     name: string, 
     picURL: string
   }>
-  artist: string
+  artist: string,
+  deleteAlbum: (deleteName: string) => void
 }
 
-const Carousel = ({ albums }: Props) => {
+const Carousel = ({ albums, deleteAlbum }: Props) => {
 
   const displayAlbums = albums.map((album, index) => {
     return (
@@ -27,6 +27,7 @@ const Carousel = ({ albums }: Props) => {
         alt={"Album cover image of " + album.name}
         />
         <h2>{album.name}</h2>
+        {"localhost:3000/my-collection" && <Link to={''}> <button onClick={() => deleteAlbum(album.name)} className='delete-album'>Delete</button></Link>}
       </Link>
     ) 
   })
@@ -37,7 +38,5 @@ const Carousel = ({ albums }: Props) => {
       </div>
     )
   }
-
-
 
 export default Carousel

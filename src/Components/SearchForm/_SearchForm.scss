@@ -5,6 +5,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 85vh;
+  width: 100vw;
+  padding-top: 15vh;
+  @include mixins.exploreBg()
 }
 
 .search-header {
@@ -14,25 +18,38 @@
   height: 20vh;
 }
 
+.search-header-title {
+  font-family: 'Staatliches';
+  font-size: 5.5em;
+  color: rgb(252, 251, 244);
+  text-shadow: 8px 5px 18px #00000090;
+}
+
 .search-form {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   width: 50vw;
 }
 
 .search-input {
-  width: 35vw;
-  height: 3.5vh;
+  width: 22em;
+  height: 1.8em;
   font-size: 1.3em;
   border-radius: 8px;
+  background-color: rgba(252, 251, 244, 0.798);
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.3);
 }
 
 .search-button {
-  width: 7vw;
-  height: 3vh;
+  @include mixins.themeButton();
+  width: 6em;
+  height: 1.6em;
   border-radius: 60px;
-  font-size: 1em;
+  font-size: 1.5em;
+  margin-left: .5em;
+  border: none;
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.3);
 }
 
 .carousel-container {
@@ -47,3 +64,5 @@
   overflow-y: hidden;
   white-space: nowrap;
 }
+
+

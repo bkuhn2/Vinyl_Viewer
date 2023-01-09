@@ -1,8 +1,23 @@
 @use '../../Utilities/mixins';
 @use '../../Utilities/variables';
 
+.album-section-parent {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 82vh;
+  padding-top: 18vh;
+  @include mixins.exploreBg();
+  color: white;
+}
+
 .directory {
-  width: min(100%, 1480px)
+  width: min(100%, 1480px);
+}
+
+.directory__artist a {
+  color: white;
 }
 
 .album-section {
@@ -15,18 +30,37 @@
 }
 
 .album-details {
-  width: min(50%, 740px);
+  width: 41%;
+  background-color: variables.$container-gray;
+  padding: 4%;
+}
+
+.album-details__name {
+  font-size: 2rem;
+}
+
+.album-details__last-link a {
+  color: white;
+}
+
+.add-button {
+  @include mixins.themeButton();
+  font-size: 1rem;
+  border: none;
+  height: 34px;
+  width: 159px;
 }
 
 .saved-message {
   display: flex;
   align-items: center;
   background-color: #bfebbf;
-  height: 38px;
+  height: 34px;
   width: 297px;
 
   & p {
     margin: 0px 15px;
+    color: black;
   }
 }
 
@@ -34,7 +68,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48%;
+  width: 49%;
   aspect-ratio: 1 / 1;
   background-color: rgb(236 236 236);
 }
