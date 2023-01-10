@@ -5,11 +5,11 @@
 describe('Search Page Functionality', () => {
 
   beforeEach(() => {
-    cy.intercept(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=Smash%20Mouth&api_key=fcf48a134034bb684aa87d0e0309a0fd%20%20%20%20&format=json`, {
+    cy.intercept(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=Smash%20Mouth&api_key=fcf48a134034bb684aa87d0e0309a0fd%20%20%20%20&limit=15&format=json`, {
       method: 'GET',
       fixture: '../fixtures/searchResults.json'
     });
-    cy.intercept(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=Smash%20Mouth&api_key=fcf48a134034bb684aa87d0e0309a0fd&format=json`, {
+    cy.intercept(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=Smash%20Mouth&api_key=fcf48a134034bb684aa87d0e0309a0fd&limit=30&format=json`, {
       method: 'GET',
       fixture: '../fixtures/searchResultsAlbums.json'
     })
