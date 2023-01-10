@@ -1,12 +1,12 @@
-import {useState} from "react"
+import { useState } from "react"
 import "./_App.scss"
-import {Routes, Route} from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import Home from "../Home/Home"
 import MainLayout from "../MainLayout/MainLayout"
 import SearchForm from "../SearchForm/SearchForm"
 import AlbumDetailsContainer from "../AlbumDetails/AlbumDetailsContainer"
 import UserCollection from "../UserCollection/UserCollection"
-import {SavedAlbum} from "../../interfaces"
+import { SavedAlbum } from "../../interfaces"
 
 function App() {
   const [userCollection, setUserCollection] = useState<SavedAlbum[]>([])
@@ -54,4 +54,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

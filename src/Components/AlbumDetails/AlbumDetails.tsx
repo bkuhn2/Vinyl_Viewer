@@ -1,11 +1,9 @@
-import {FC, useEffect, useState} from "react"
-import {useParams, Link} from "react-router-dom"
-
+import { FC, useEffect, useState } from "react"
+import { useParams, Link } from "react-router-dom"
 import "./_AlbumDetails.scss"
-import {AlbumInterface} from "../../interfaces"
+import { AlbumInterface } from "../../interfaces"
 import formatReleaseDate from "../../Helper/formatReleaseDate"
-import {SavedAlbum} from "../../interfaces"
-
+import { SavedAlbum } from "../../interfaces"
 import fallback from "../../Images/fallback.png"
 
 interface Props {
@@ -127,4 +125,4 @@ const AlbumDetails: FC<Props> = ({addToCollection, userCollection, album}) => {
   )
 }
 
-export default AlbumDetails
+export default AlbumDetails;

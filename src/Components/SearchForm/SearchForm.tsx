@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './_SearchForm.scss';
 import ArtistResults from '../ArtistResults/ArtistResults';
 import Carousel, { CarouselTile } from '../Carousel/Carousel';
 import fetchData from '../../Helper/APIcalls';
 import SearchError from '../SearchError/SearchError';
-import { FetchAlbumsDatum, FetchArtistsDatum, SearchedAlbumsState } from '../../interfaces';
+import { SearchedAlbumsState } from '../../interfaces';
 import { formatSearchedAlbums, formatSearchedArtists } from '../../Helper/CleanUp';
 
 const SearchForm = () => {
@@ -23,8 +23,6 @@ const SearchForm = () => {
     fetchData(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${searchName}&api_key=fcf48a134034bb684aa87d0e0309a0fd
     &limit=15&format=json`)
       .then(data => {   
-        console.log(data);
-          
         if (data.results.artistmatches.artist.length === 0) {
           throw new Error(`Looks like we don't have any artists matching that name...`);
         } else {
@@ -115,7 +113,7 @@ const SearchForm = () => {
           placeholder='Search for your favorite artists'
           value={searchField} 
           onChange={event => handleInputChange(event.target.value)}
-          />
+        />
         <Link to={`/search/${searchField}`}>
           <button className='search-button'>Search</button>
         </Link>
@@ -135,4 +133,4 @@ const SearchForm = () => {
   )
 }
 
-export default SearchForm
+export default SearchForm;

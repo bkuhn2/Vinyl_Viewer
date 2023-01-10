@@ -1,8 +1,6 @@
 import {FC, useEffect, useState} from "react"
 import {useParams} from "react-router-dom"
-
 import AlbumDetails from "./AlbumDetails"
-
 import {SavedAlbum} from "../../interfaces"
 import {AlbumInterface, FetchedTrack} from "../../interfaces"
 
@@ -70,4 +68,4 @@ const AlbumDetailsContainer: FC<ContainerProps> = ({
   )
 }
 
-export default AlbumDetailsContainer
+export default AlbumDetailsContainer;

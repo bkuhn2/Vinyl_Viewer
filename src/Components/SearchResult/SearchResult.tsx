@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './_SearchResult.scss'
 
 type Props = {
@@ -9,9 +8,6 @@ type Props = {
 }
 
 const SearchResult = ({name, searchName, id}: Props) => {
-
-
-
   return (
     <Link to={`/search/${searchName}/${name}`} id={`${id}`} className='search-result-container'>
       <p className='search-result'>{name}</p>
@@ -19,4 +15,4 @@ const SearchResult = ({name, searchName, id}: Props) => {
   )
 }
 
-export default SearchResult
+export default SearchResult;
