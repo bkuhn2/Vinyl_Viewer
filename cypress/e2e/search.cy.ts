@@ -89,10 +89,8 @@ describe('Search Page Functionality', () => {
 
     cy.get('.carousel')
       .get('.inner')
-        .find('.album-tile[href="/album/smash+mouth/shrek"]')
+        .find('.album-tile[id="Shrek"]')
           .click()
-            .url().should('include', '/album/smash+mouth/shrek')
-    
+            .url().should('include', '/album/smash+mouth/shrek')   
   });
-
 })
