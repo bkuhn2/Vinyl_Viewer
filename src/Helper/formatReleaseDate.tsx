@@ -6,4 +6,4 @@ const formatReleaseDate = (date: string) => {
   return `${month} ${formattedDay}, ${year}`
 }
 
-export default formatReleaseDate
+export default formatReleaseDate;

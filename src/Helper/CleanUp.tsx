@@ -1,4 +1,4 @@
-import { FetchAlbumsDatum, FetchArtistsDatum, SearchedAlbumsState } from "../interfaces"
+import { FetchAlbumsDatum, FetchArtistsDatum } from "../interfaces"
 import record from '../Images/recordplaceholder.png'
 
 const formatURLString = (item: string) => {
@@ -15,18 +15,15 @@ const replaceAmpersand = (rawData: string[]) => {
   const replacedArtists = rawData.map(name => {
      if (name.includes('&')) {
       const splitName = name.split('');
-
       const indices = splitName.reduce((indexNums: number[], character, currentIndex) => {
         if (character === '&') {
           indexNums.push(currentIndex)
         }
         return indexNums
       }, []);
-
       indices.forEach(position => {
         splitName.splice(position, 1, 'and')
-      });
-      
+      });      
       return splitName.join('');
     } else {
       return name;
@@ -40,7 +37,6 @@ const replaceAmpersand = (rawData: string[]) => {
       cleanedArtists.push(artist)
     };
   });
-
   return cleanedArtists;
 }
 
@@ -68,4 +64,4 @@ const removeEmptyAlbumName = (rawAlbums: FetchAlbumsDatum[]) => {
   })
 }
   
-  export { formatURLString,  formatSearchedAlbums, removeEmptyAlbumName, formatSearchedArtists }
+export { formatURLString, formatSearchedAlbums, removeEmptyAlbumName, formatSearchedArtists };
