@@ -25,8 +25,7 @@ export const CarouselTile = ({ album, width, deleteAlbum }: carouselTileData) =>
       className='album-tile' 
       style={{ width: width}}
       id={album.name}
-    >
-      
+    >      
       <Link
         className='single-tile'
         to={`/album/${formatURLString(album.artist)}/${formatURLString(album.name)}`}
@@ -34,20 +33,17 @@ export const CarouselTile = ({ album, width, deleteAlbum }: carouselTileData) =>
       <div className="carousel-title-container">
         <p className="carousel-title">{album.artist}</p>
         <p className="carousel-title">{album.name}</p>
-      </div>
-        
+      </div>      
         <img
           className="album-image"
           src={album.picURL}
           alt={"Album cover image of " + album.name}
         />
-  
       </Link>
       {location.pathname === '/my-collection' && <button className='delete-album' onClick={() => deleteAlbum(album.name)}>Remove From My Collection</button>}
     </div>
   )
 }
-
 
 const Carousel = ({ children }: carouselData) => {
   const [activeAlbum, newActiveAlbum] = useState(0)
@@ -62,6 +58,7 @@ const Carousel = ({ children }: carouselData) => {
 
       newActiveAlbum(albumIndex)
   }
+  
   return (
     <div className="carousel-container">
 
