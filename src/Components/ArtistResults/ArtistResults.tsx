@@ -1,4 +1,3 @@
-import React from 'react'
 import '../ArtistResults/_ArtistResults.scss';
 import SearchResult from '../SearchResult/SearchResult';
 
@@ -25,4 +24,4 @@ const ArtistResults = ({results, searchName}: Props) => {
   )
 }
 
-export default ArtistResults
+export default ArtistResults;

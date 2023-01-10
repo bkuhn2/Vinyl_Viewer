@@ -1,4 +1,3 @@
-import React from 'react'
 import '../SearchError/_SearchError.scss'
 
 type Props = {
@@ -13,4 +12,4 @@ const SearchError = ({ errorMessage } : Props) => {
   )
 }
 
-export default SearchError
+export default SearchError;

@@ -34,7 +34,6 @@ export interface FetchedTrack {
   url: string
 }
 
-
 export interface FetchAlbumsDatum {
   artist: {name: string},
   name: string, 

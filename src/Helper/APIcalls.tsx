@@ -1,5 +1,3 @@
-import React from "react"
-
 const fetchData = (url: string) => {
   return fetch(url).then(response => {
     if (response.ok) {
@@ -10,4 +8,4 @@ const fetchData = (url: string) => {
   })
 }
 
-export default fetchData
+export default fetchData;

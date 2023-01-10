@@ -48,50 +48,45 @@ export const CarouselTile = ({ album, width, deleteAlbum }: carouselTileData) =>
 const Carousel = ({ children }: carouselData) => {
   const [activeAlbum, newActiveAlbum] = useState(0)
   const updateAlbum = ( albumIndex: number ) => {
-      if (albumIndex < 0) {
-          albumIndex = React.Children.count(children) - 1
-      } 
-      else if (albumIndex >= React.Children.count(children)) {
-          
-          albumIndex = 0
-      }
-
-      newActiveAlbum(albumIndex)
+    if (albumIndex < 0) {
+      albumIndex = React.Children.count(children) - 1
+    } 
+    else if (albumIndex >= React.Children.count(children)) {
+      albumIndex = 0
+    }
+    newActiveAlbum(albumIndex)
   }
   
   return (
     <div className="carousel-container">
-
-        <button
-          className="carousel-navigate"
-          onClick={() => {
-          updateAlbum(activeAlbum - 1)
-        }}
-        >
-        {'<'}
-        </button>
-      <div className="carousel">
-          <div className="inner" style={{ transform: `translateX(-${activeAlbum * 1/3 * 100}%)` }}>
-              {React.Children.map(children, (child) => {
-                  if(React.isValidElement(child)) {
-                    return React.cloneElement(child)
-                  }
-                  return
-              })}
-          </div>
+      <button
+        className="carousel-navigate"
+        onClick={() => {
+        updateAlbum(activeAlbum - 1)
+      }}
+      >
+      {'<'}
+      </button>
+    <div className="carousel">
+      <div className="inner" style={{ transform: `translateX(-${activeAlbum * 1/3 * 100}%)` }}>
+        {React.Children.map(children, (child) => {
+          if(React.isValidElement(child)) {
+            return React.cloneElement(child)
+          }
+          return
+        })}
       </div>
-        <button 
-          className="carousel-navigate"
-          onClick={() => {
-            updateAlbum(activeAlbum + 1)
-          }}
-        >
-        {'>'}
-        </button>
-
+    </div>
+      <button 
+        className="carousel-navigate"
+        onClick={() => {
+          updateAlbum(activeAlbum + 1)
+        }}
+      >
+      {'>'}
+      </button>
     </div>
   )
 }
 
-export default Carousel
-
+export default Carousel;
