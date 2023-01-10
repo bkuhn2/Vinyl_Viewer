@@ -5,7 +5,7 @@ describe("My Collection test", () => {
     cy.intercept(
       {
         method: "GET",
-        url: "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=the+beatles&album=rubber+soul&format=json",
+        url: "https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=the+beatles&album=rubber+soul&format=json",
       },
       {
         fixture: "albumDetailsRubberSoul.json",
