@@ -38,6 +38,7 @@ For this project we were tasked to collaborate to create a React app using TypeS
 ## Preview
 
 
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/110264166/211445498-59aa3fb2-d7a9-4b93-ae0b-be0a13bdf13f.gif)
 
 
 ## Technologies Used
