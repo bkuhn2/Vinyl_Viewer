@@ -67,12 +67,13 @@ describe('Search Page Functionality', () => {
       .click();
     cy.get('.carousel')
         .get('.inner')
-          .find('.album-tile[href="/album/smash+mouth/astro+lounge"]')
-            .contains('Astro Lounge')
+          .find('.album-tile[id="Astro Lounge"]')
+              .should('be.visible')
+
     cy.get('.carousel')
         .get('.inner')
-          .find('.album-tile[href="/album/smash+mouth/shrek"]')
-            .contains('Shrek')      
+          .find('.album-tile[id="Shrek"]')
+              .should('be.visible')
   });
 
   it('should navigate to the album details page when an album is clicked', () => {

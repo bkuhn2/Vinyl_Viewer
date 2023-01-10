@@ -21,7 +21,12 @@ interface carouselData {
 export const CarouselTile = ({ album, width, deleteAlbum }: carouselTileData) => {
   let location = useLocation();
   return (
-    <div className='album-tile' style={{ width: width}}>
+    <div 
+      className='album-tile' 
+      style={{ width: width}}
+      id={album.name}
+    >
+      
       <Link
         className='single-tile'
         to={`/album/${formatURLString(album.artist)}/${formatURLString(album.name)}`}
