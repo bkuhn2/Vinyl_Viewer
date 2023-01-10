@@ -19,6 +19,7 @@
   background: linear-gradient(10deg, rgba(44, 43, 43, 0.543) 19%, rgba(44, 26, 27, 0.628) 83%), url(/Images/collection.jpg);
   background-size: cover;
   background-attachment: scroll;
+  padding-top: 15vh;
 }
 
 .form {
@@ -38,7 +39,6 @@
 }
 
 .title-header {
-  padding-top: 80px;
   font-family: 'Staatliches';
   font-size: 5.5em;
   color: rgb(252, 251, 244);

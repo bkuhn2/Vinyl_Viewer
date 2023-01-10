@@ -24,7 +24,7 @@ const AlbumDetailsContainer: FC<ContainerProps> = ({
   const getPage = async () => {
     try {
       const response = await fetch(
-        `http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=${artistName}&album=${albumName}&format=json`
+        `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=${artistName}&album=${albumName}&format=json`
       )
       if (response.ok) {
         const {album} = await response.json()

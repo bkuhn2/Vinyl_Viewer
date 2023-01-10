@@ -20,7 +20,7 @@ const SearchForm = () => {
   let selectedArtist: string = useParams().artistName!;
 
   const searchArtists = (searchName: string) => {
-    fetchData(`http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${searchName}&api_key=fcf48a134034bb684aa87d0e0309a0fd
+    fetchData(`https://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${searchName}&api_key=fcf48a134034bb684aa87d0e0309a0fd
     &limit=15&format=json`)
       .then(data => {   
         if (data.results.artistmatches.artist.length === 0) {
@@ -48,7 +48,7 @@ const SearchForm = () => {
   }
 
   const retrieveAlbums = (selectedArtist: string) => {
-    fetchData(`http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${selectedArtist}&api_key=fcf48a134034bb684aa87d0e0309a0fd&limit=30&format=json`)
+    fetchData(`https://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=${selectedArtist}&api_key=fcf48a134034bb684aa87d0e0309a0fd&limit=30&format=json`)
       .then(data => {
         if (data.error) {
           throw new Error(`Couldn't find any albums for this artist...`);

@@ -5,7 +5,7 @@ describe("Album Details Page", () => {
     cy.intercept(
       {
         method: "GET",
-        url: "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=the+beatles&album=rubber+soul&format=json",
+        url: "https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=the+beatles&album=rubber+soul&format=json",
       },
       {
         fixture: "albumDetailsRubberSoul.json",
@@ -90,7 +90,7 @@ describe("Album Details Page (missing data)", () => {
     cy.intercept(
       {
         method: "GET",
-        url: "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=george+harrison&album=all+things+must+pass&format=json",
+        url: "https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=fcf48a134034bb684aa87d0e0309a0fd&artist=george+harrison&album=all+things+must+pass&format=json",
       },
       {
         fixture: "albumDetailsMissingData.json",
