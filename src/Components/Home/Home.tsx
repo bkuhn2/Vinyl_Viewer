@@ -11,7 +11,7 @@ const Home = () => {
           to={`/search`}
           tabIndex={0}
           >
-            <h2>Search Artists</h2>
+            <h2 className='home-page-text'>Search Artists</h2>
         </Link>
 
         <Link 
@@ -19,7 +19,7 @@ const Home = () => {
           to={`/my-collection`}
           tabIndex={0}
           >
-            <h2>My Collection</h2>
+            <h2 className='home-page-text'>My Collection</h2>
         </Link>
       </div>
   )
